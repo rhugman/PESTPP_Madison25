@@ -11,11 +11,11 @@ BEGIN GRIDDATA
     CONSTANT 0
     CONSTANT 0
   K LAYERED
-    OPEN/CLOSE k_aq.ref
-    OPEN/CLOSE k_aq.ref
-    OPEN/CLOSE k_clay.ref IPRN 5
-    OPEN/CLOSE k_aq.ref
-    OPEN/CLOSE k_aq.ref
+    OPEN/CLOSE k_aq.ref FACTOR 1.0
+    OPEN/CLOSE k_aq.ref FACTOR 1.0
+    OPEN/CLOSE k_clay.ref FACTOR 1.0
+    OPEN/CLOSE k_aq.ref FACTOR 1.0
+    OPEN/CLOSE k_aq.ref FACTOR 1.0
   K33 LAYERED
     OPEN/CLOSE k_aq.ref FACTOR ~   Kaniso    ~
     OPEN/CLOSE k_aq.ref FACTOR ~   Kaniso    ~
