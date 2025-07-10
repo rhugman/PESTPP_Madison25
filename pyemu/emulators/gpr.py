@@ -9,10 +9,7 @@ import shutil
 import inspect
 from .base import Emulator
 from .transformers import AutobotsAssemble
-try:
-    from sklearn.gaussian_process import GaussianProcessRegressor
-except Exception as e:
-    pass
+from sklearn.gaussian_process import GaussianProcessRegressor
 from pyemu.utils import run
 
 from pyemu.pst import Pst
@@ -313,7 +310,7 @@ class GPR(Emulator):
         # 3. which obs are objectives; subset of output_names
         # 4. which obs are constraints; subset of output_names
 
-        pst, input_names, output_names, objs, constraints = scrape_pst_dir(self,pst_dir,casename)
+        pst, input_names, output_names, objs, constraints = scrape_pst_dir(pst_dir,casename)
 
 
         # check that all input_names ar ein par data
