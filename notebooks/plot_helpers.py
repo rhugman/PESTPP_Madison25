@@ -13,15 +13,18 @@ import shutil
 import pandas as pd
 
 
-def plot_ies_results(m_d,tag="",casename="at"):
+def plot_ies_results(m_d,tag="",casename="at",ptiter=None):
+
     pst = pyemu.Pst(os.path.join(m_d,f"{casename}.pst"))
     
     noise = pst.ies.noise
     itrs = pst.ies.phiactual.iteration.values
     obs = pst.observation_data
-    nzobs = obs.loc[obs.weight > 0,:]
+    nzobs = obs.loc[obs.obgnme=='headgroup',:]
     odict = {n:v for n,v in zip(nzobs.obsnme,nzobs.obsval)}
-    ptoe = pst.ies.get("obsen{0}".format(itrs.max()))
+    if ptiter is None:
+        ptiter = itrs.max()
+    ptoe = pst.ies.get("obsen{0}".format(ptiter))
     proe = pst.ies.obsen0
     phivals = pst.ies.phimeas.iloc[-1,6:]
     phimean = phivals.mean()
@@ -148,6 +151,45 @@ def plot_ies_results(m_d,tag="",casename="at"):
     
     _ = ax.set_ylim(mn,mx)
             
+
+def plot_dsi_compare_traindata(realseq=[10,50,100,150,200,250,300]):
+
+    fig=None
+    for nreal in realseq:
+        md = f"master_dsi_{nreal}"
+        dpst = pyemu.Pst(os.path.join(md, "dsi.pst"))
+
+        if fig is None:
+            fig,axs = plt.subplots(dpst.ies.phiactual.iteration.nunique()-1,2,figsize=(10,12),
+                                   sharex=True,sharey=False)
+            
+            obs = dpst.observation_data
+            obsnmes = obs.loc[obs.obgnme=='rivgroup'].obsnme.tolist()
+            
+
+        for e,o in enumerate(obsnmes):
+            for iiter in dpst.ies.phiactual.iteration.unique():
+                if iiter==0:
+                    continue
+                ptoe = dpst.ies.get("obsen{0}".format(iiter))
+
+
+                ax = axs[iiter-1,e]
+                ax.set_title(f"iteration:{iiter}")
+                #ax.hist(ptoe.loc[:,obsnmes[0]].values.flatten(), bins=20,alpha=0.5, label=f"{nreal} reals",zorder=0)
+                ax.scatter(nreal*np.ones(ptoe.loc[:,obsnmes[0]].values.flatten().shape),
+                        ptoe.loc[:,obsnmes[0]].values.flatten(),c='0.5', alpha=0.3, label=f"{nreal} reals",zorder=0)
+                ax.set_xlabel("Number of Reals")
+                ax.set_ylabel(obsnmes[0])
+            
+                ax.scatter([nreal],ptoe.loc[:,obsnmes[0]].quantile(.5),c='k',marker='o')
+                ax.vlines(nreal, ptoe.loc[:,obsnmes[0]].quantile(.05),
+                        ptoe.loc[:,obsnmes[0]].quantile(.95), color='k', linestyle='--')
+
+
+
+    plt.tight_layout()
+    return
 
 
 if __name__ == "__main__":
