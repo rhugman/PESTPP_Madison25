@@ -163,18 +163,19 @@ def plot_dsi_compare_traindata(realseq=[10,50,100,150,200,250,300]):
             obs = dpst.observation_data
             obsnmes = obs.loc[obs.obgnme=='rivgroup'].obsnme.tolist()
             nrows = dpst.ies.phiactual.iteration.nunique()-1
-            fig,axs = plt.subplots(nrows,2,figsize=(10,6*nrows),
-                                   sharex=True,sharey="col")
+            fig,axs = plt.subplots(nrows,len(obsnmes),figsize=(10,4*nrows),
+                                   sharex=True,)#sharey="col")
         for e,o in enumerate(obsnmes):
             for iiter in dpst.ies.phiactual.iteration.unique():
                 if iiter==0:
                     continue
                 ptoe = dpst.ies.get("obsen{0}".format(iiter))
 
-                if len(axs) == len(obsnmes):
+                if len(axs) == 1:
                     ax = axs[e]
                 else:
                     ax = axs[iiter-1,e]
+
                 ax.set_title(f"iteration:{iiter}")
                 #ax.hist(ptoe.loc[:,obsnmes[0]].values.flatten(), bins=20,alpha=0.5, label=f"{nreal} reals",zorder=0)
                 ax.scatter(nreal*np.ones(ptoe.loc[:,o].values.flatten().shape),
