@@ -161,7 +161,7 @@ def plot_dsi_compare_traindata(realseq=[10,50,100,150,200,250,300]):
 
         if fig is None:
             obs = dpst.observation_data
-            obsnmes = obs.loc[obs.obgnme=='rivgroup'].obsnme.tolist()
+            obsnmes = obs.loc[obs.usecol=='chd(chd-1)'].obsnme.tolist()
             nrows = dpst.ies.phiactual.iteration.nunique()-1
             fig,axs = plt.subplots(nrows,len(obsnmes),figsize=(10,4*nrows),
                                    sharex=True,)#sharey="col")
