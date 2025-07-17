@@ -160,36 +160,36 @@ def plot_dsi_compare_traindata(realseq=[10,50,100,150,200,250,300]):
         dpst = pyemu.Pst(os.path.join(md, "dsi.pst"))
 
         if fig is None:
-            fig,axs = plt.subplots(dpst.ies.phiactual.iteration.nunique()-1,2,figsize=(10,12),
-                                   sharex=True,sharey=False)
-            
             obs = dpst.observation_data
             obsnmes = obs.loc[obs.obgnme=='rivgroup'].obsnme.tolist()
-            
-
+            nrows = dpst.ies.phiactual.iteration.nunique()-1
+            fig,axs = plt.subplots(nrows,2,figsize=(10,6*nrows),
+                                   sharex=True,sharey="col")
         for e,o in enumerate(obsnmes):
             for iiter in dpst.ies.phiactual.iteration.unique():
                 if iiter==0:
                     continue
                 ptoe = dpst.ies.get("obsen{0}".format(iiter))
 
-
-                ax = axs[iiter-1,e]
+                if len(axs) == len(obsnmes):
+                    ax = axs[e]
+                else:
+                    ax = axs[iiter-1,e]
                 ax.set_title(f"iteration:{iiter}")
                 #ax.hist(ptoe.loc[:,obsnmes[0]].values.flatten(), bins=20,alpha=0.5, label=f"{nreal} reals",zorder=0)
-                ax.scatter(nreal*np.ones(ptoe.loc[:,obsnmes[0]].values.flatten().shape),
-                        ptoe.loc[:,obsnmes[0]].values.flatten(),c='0.5', alpha=0.3, label=f"{nreal} reals",zorder=0)
+                ax.scatter(nreal*np.ones(ptoe.loc[:,o].values.flatten().shape),
+                        ptoe.loc[:,o].values.flatten(),c='0.5', alpha=0.3, label=f"{nreal} reals",zorder=0)
                 ax.set_xlabel("Number of Reals")
-                ax.set_ylabel(obsnmes[0])
-            
-                ax.scatter([nreal],ptoe.loc[:,obsnmes[0]].quantile(.5),c='k',marker='o')
-                ax.vlines(nreal, ptoe.loc[:,obsnmes[0]].quantile(.05),
-                        ptoe.loc[:,obsnmes[0]].quantile(.95), color='k', linestyle='--')
+                ax.set_ylabel(o)
+
+                ax.scatter([nreal],ptoe.loc[:,o].quantile(.5),c='k',marker='o')
+                ax.vlines(nreal, ptoe.loc[:,o].quantile(.05),
+                        ptoe.loc[:,o].quantile(.95), color='k', linestyle='--')
 
 
 
-    plt.tight_layout()
-    return
+    fig.tight_layout()
+    return fig,axs
 
 
 if __name__ == "__main__":
