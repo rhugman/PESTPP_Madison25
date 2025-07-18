@@ -19,15 +19,11 @@ jobs:
           cache-downloads: true
           init-shell: bash
 
-      - name: Install Quarto
-        run: |
-          curl -fsSL https://quarto.org/download/latest/linux-amd64.sh | bash
-          export PATH="$HOME/quarto/bin:$PATH"
-          quarto --version
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render site
         run: |
-          export PATH="$HOME/quarto/bin:$PATH"
           quarto render
 
       - name: Add .nojekyll
