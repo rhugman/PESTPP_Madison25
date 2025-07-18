@@ -1,4 +1,4 @@
-name: gmdsitut
+name: madison
 channels:
   - conda-forge
 dependencies:
@@ -19,8 +19,8 @@ dependencies:
   - psutil
   - git
   - nbconvert
-  - pip:
-       - -e ./dependencies/flopy
-       - -e ./dependencies/pyemu
+  #- pip:
+  #     - -e ./dependencies/flopy
+  #     - -e ./dependencies/pyemu
 
 
