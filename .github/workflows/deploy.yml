@@ -26,8 +26,8 @@ jobs:
       - name: Render site in environment
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          # Install kernel in the environment
-          micromamba run -n madison python -m ipykernel install --name python3 --display-name "Python 3"
+          # Install kernel in user space to avoid permission issues
+          micromamba run -n madison python -m ipykernel install --user --name python3 --display-name "Python 3"
           # Execute notebooks using Jupyter directly (this should work since Jupyter is in the same env)
           micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_pstfrom.ipynb
           micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_ies.ipynb  
