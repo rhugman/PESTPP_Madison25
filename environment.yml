@@ -22,6 +22,6 @@ dependencies:
   - nbconvert
   - pip:
        - -e flopy
-       - -e pyemu
+      # - -e pyemu
 
 
