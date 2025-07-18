@@ -31,11 +31,14 @@ jobs:
         run: |
           export PATH="$PWD/bin/linux:$PATH"
           micromamba run -n madison python -m ipykernel install --user --name python3 --display-name "Python 3"
+          # Verify kernel installation
+          micromamba run -n madison jupyter kernelspec list
 
       - name: Render site with environment
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          micromamba run -n madison quarto render
+          export JUPYTER_PATH="$HOME/.local/share/jupyter"
+          micromamba run -n madison quarto render --execute-debug
         env:
           PATH: ${{ env.PATH }}
 

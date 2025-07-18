@@ -30,6 +30,8 @@ website:
       - notebooks/simple_ies.ipynb
       - notebooks/simple_LP_example.ipynb
 
+jupyter: python3
+
 format:
   html:
     toc: true
