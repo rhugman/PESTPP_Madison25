@@ -1,0 +1,13 @@
+---
+title: "PESTPP Madison Tutorials"
+---
+
+# Welcome to the PESTPP Madison Tutorials
+
+Explore groundwater modeling and uncertainty analysis using PESTPP and MODFLOW6. The following tutorials are available:
+
+- [Simple PSTFrom](notebooks/simple_pstfrom.ipynb)
+- [Simple IES](notebooks/simple_ies.ipynb)
+- [Simple LP Example](notebooks/simple_LP_example.ipynb)
+
+Each notebook is fully executable and includes step-by-step instructions.

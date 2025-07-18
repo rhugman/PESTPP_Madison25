@@ -1,0 +1,28 @@
+name: madison
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pandas>=2.0
+  - numpy<2 
+  - matplotlib 
+  - openpyxl
+  - xlrd
+  - jupyter
+  - nbformat 
+  - notebook 
+  - scipy 
+  - shapely
+  - rtree
+  - pyproj>=2.0
+  - pyshp
+  - psutil
+  - git
+  - nbconvert
+  - ipykernel
+  - pip:
+       - -e flopy
+      # - -e pyemu
+
+
