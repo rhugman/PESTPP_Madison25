@@ -32,8 +32,8 @@ jobs:
           micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_pstfrom.ipynb
           micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_ies.ipynb  
           micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_LP_example.ipynb
-          # Now render with Quarto (execution disabled since notebooks are pre-executed)
-          micromamba run -n madison quarto render --execute=false
+          # Now render with Quarto using render command without execution flags
+          micromamba run -n madison quarto render
         
       - name: Add .nojekyll
         run: |
