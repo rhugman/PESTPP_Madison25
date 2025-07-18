@@ -30,14 +30,21 @@ jobs:
       - name: Setup Python kernel with environment variables
         run: |
           export PATH="$PWD/bin/linux:$PATH"
+          # Install kernel with full environment prefix
           micromamba run -n madison python -m ipykernel install --user --name python3 --display-name "Python 3"
+          # Also try installing in the conda environment itself
+          micromamba run -n madison python -m ipykernel install --prefix $(micromamba info --base)/envs/madison --name python3
           # Verify kernel installation
           micromamba run -n madison jupyter kernelspec list
+          echo "Jupyter data dir:"
+          micromamba run -n madison python -c "import jupyter_core; print(jupyter_core.paths.jupyter_data_dir())"
 
       - name: Render site with environment
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          export JUPYTER_PATH="$HOME/.local/share/jupyter"
+          # Set multiple Jupyter paths to ensure kernel is found
+          export JUPYTER_PATH="$HOME/.local/share/jupyter:$(micromamba run -n madison python -c 'import jupyter_core; print(jupyter_core.paths.jupyter_data_dir())')"
+          export JUPYTER_CONFIG_PATH="$HOME/.local/share/jupyter:$(micromamba run -n madison python -c 'import jupyter_core; print(jupyter_core.paths.jupyter_config_dir())')"
           micromamba run -n madison quarto render --execute-debug
         env:
           PATH: ${{ env.PATH }}
