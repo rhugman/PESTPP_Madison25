@@ -24,6 +24,6 @@ dependencies:
   - quarto
   - pip:
        - -e flopy
-      # - -e pyemu
+       - -e pyemu
 
 
