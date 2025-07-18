@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-025db3b089a7e65f2676a8a92be6aa8b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-16ed6b721fb3ed5dec6e8ac5c8ff3b6f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -201,21 +204,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="a8f21e54-7154-4f14-9b5d-660a61daa2fa" class="cell">
+<div id="a8f21e54-7154-4f14-9b5d-660a61daa2fa" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:40.776818Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:40.776654Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.156886Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.156275Z&quot;}}" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyemu</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> flopy</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> platform</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyemu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="4117da68-8f89-47b5-9a02-65a333f8ed0d" class="cell">
+<div id="4117da68-8f89-47b5-9a02-65a333f8ed0d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.159133Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.158701Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.162070Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.161662Z&quot;}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>org_ws <span class="op">=</span> Path(<span class="st">'../MV_Model_Files/'</span>)</span>
@@ -228,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    exe_dir <span class="op">=</span> Path(<span class="st">'../bin/windows/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="02b82a0c-de39-417b-90e0-70fb448939d5" class="cell">
+<div id="02b82a0c-de39-417b-90e0-70fb448939d5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.163616Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.163428Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.194964Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.194479Z&quot;}}" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(new_ws):</span>
@@ -238,349 +245,2656 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    shutil.copy2(os.path.join(exe_dir,f),os.path.join(new_ws,f))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="28115f1f-028f-4578-b3a9-8e8ff9da5329" class="cell">
+<div id="28115f1f-028f-4578-b3a9-8e8ff9da5329" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.196757Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.196591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.338636Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.338128Z&quot;}}" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sim <span class="op">=</span> flopy.mf6.MFSimulation.load(sim_ws <span class="op">=</span> new_ws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>loading simulation...
+  loading simulation name file...
+  loading tdis package...
+  loading model gwf6...
+    loading package dis...
+    loading package ic...
+WARNING: Block "options" is not a valid block name for file type ic.
+    loading package npf...
+    loading package oc...
+    loading package chd...
+    loading package rch...
+    loading package riv...
+    loading package wel...
+    loading package obs...
+  loading solution package at...</code></pre>
 </div>
-<div id="724a342f-b3be-4263-9a63-4e1e83633413" class="cell">
+</div>
+<div id="724a342f-b3be-4263-9a63-4e1e83633413" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.340261Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.340088Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.397165Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.396633Z&quot;}}" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'mf6'</span>,cwd<span class="op">=</span>new_ws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'mf6'</span>,cwd<span class="op">=</span>new_ws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>./mf6
+                                   MODFLOW 6
+                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL
+                   VERSION 6.3.0 release candidate 02/06/2022
+                               ***DEVELOP MODE***
+
+   MODFLOW 6 compiled Feb 06 2022 02:33:33 with Intel(R) Fortran Intel(R) 64
+   Compiler Classic for applications running on Intel(R) 64, Version 2021.5.0
+                             Build 20211109_000000
+
+This software is preliminary or provisional and is subject to 
+revision. It is being provided to meet the need for timely best 
+science. The software has not received final approval by the U.S. 
+Geological Survey (USGS). No warranty, expressed or implied, is made 
+by the USGS or the U.S. Government as to the functionality of the 
+software and related material nor shall the fact of release 
+constitute any such warranty. The software is provided on the 
+condition that neither the USGS nor the U.S. Government shall be held 
+liable for any damages resulting from the authorized or unauthorized 
+use of the software.
+
+ 
+ Run start date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:43
+ 
+ Writing simulation list file: mfsim.lst
+ Using Simulation name file: mfsim.nam
+ 
+    Solving:  Stress period:     1    Time step:     1
+ 
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:43
+ Elapsed run time:  0.050 Seconds
+ 
+ Normal termination of simulation.</code></pre>
 </div>
-<div id="c7f7e8fc-9f08-4da7-b995-99fd7e8c5857" class="cell">
+</div>
+<div id="c7f7e8fc-9f08-4da7-b995-99fd7e8c5857" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.399138Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.398660Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.403576Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.403181Z&quot;}}" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> [<span class="st">"k_aq.ref"</span>,<span class="st">"k_clay.ref"</span>]:</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> np.loadtxt(os.path.join(new_ws,f))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    arr[:,:] <span class="op">=</span> arr.mean()</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    np.savetxt(os.path.join(new_ws,f),arr,fmt<span class="op">=</span><span class="st">"</span><span class="sc">%15.6E</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> [<span class="st">"k_aq.ref"</span>,<span class="st">"k_clay.ref"</span>]:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> np.loadtxt(os.path.join(new_ws,f))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    arr[:,:] <span class="op">=</span> arr.mean()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    np.savetxt(os.path.join(new_ws,f),arr,fmt<span class="op">=</span><span class="st">"</span><span class="sc">%15.6E</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="425a10ac-fcfa-4f3c-b2c6-f9d8426451fa" class="cell">
+<div id="425a10ac-fcfa-4f3c-b2c6-f9d8426451fa" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.405157Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.404852Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.462586Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.462102Z&quot;}}" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'mf6'</span>,cwd<span class="op">=</span>new_ws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'mf6'</span>,cwd<span class="op">=</span>new_ws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>./mf6
+                                   MODFLOW 6
+                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL
+                   VERSION 6.3.0 release candidate 02/06/2022
+                               ***DEVELOP MODE***
+
+   MODFLOW 6 compiled Feb 06 2022 02:33:33 with Intel(R) Fortran Intel(R) 64
+   Compiler Classic for applications running on Intel(R) 64, Version 2021.5.0
+                             Build 20211109_000000
+
+This software is preliminary or provisional and is subject to 
+revision. It is being provided to meet the need for timely best 
+science. The software has not received final approval by the U.S. 
+Geological Survey (USGS). No warranty, expressed or implied, is made 
+by the USGS or the U.S. Government as to the functionality of the 
+software and related material nor shall the fact of release 
+constitute any such warranty. The software is provided on the 
+condition that neither the USGS nor the U.S. Government shall be held 
+liable for any damages resulting from the authorized or unauthorized 
+use of the software.
+
+ 
+ Run start date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:43
+ 
+ Writing simulation list file: mfsim.lst
+ Using Simulation name file: mfsim.nam
+ 
+    Solving:  Stress period:     1    Time step:     1
+ 
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:43
+ Elapsed run time:  0.052 Seconds
+ 
+ Normal termination of simulation.</code></pre>
+</div>
+</div>
+<div id="b3e790e9-0a97-4cca-a09e-30ae2aa7dbc9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.464232Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.464056Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.472809Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.472368Z&quot;}}" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#need a spatial reference to use pilot points. this means xoff, yoff, rotation, epsg</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>m<span class="op">=</span>sim.get_model()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>m.modelgrid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>xll:0.0; yll:0.0; rotation:0.0; units:feet; lenuni:1</code></pre>
+</div>
+</div>
+<div id="789ca711-06f7-468e-86da-351f1c1e633e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.474318Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.474144Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.508732Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.508246Z&quot;}}" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pf <span class="op">=</span> pyemu.utils.PstFrom(original_d<span class="op">=</span>new_ws,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                         new_d<span class="op">=</span><span class="st">'template'</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                         remove_existing<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                         start_datetime<span class="op">=</span><span class="st">"1-1-2025"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                         spatial_reference<span class="op">=</span>m.modelgrid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2025-07-18 11:01:43.476939 starting: opening PstFrom.log for logging
+2025-07-18 11:01:43.477175 starting PstFrom process
+2025-07-18 11:01:43.477451 starting: setting up dirs
+2025-07-18 11:01:43.477551 starting: copying original_d 'simple_ies' to new_d 'template'
+2025-07-18 11:01:43.506515 finished: copying original_d 'simple_ies' to new_d 'template' took: 0:00:00.028964
+2025-07-18 11:01:43.506926 finished: setting up dirs took: 0:00:00.029475</code></pre>
+</div>
+</div>
+<div id="2b2412d5-bdc6-4d15-ac0c-c6b4d363da31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.510347Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.510180Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.538671Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.538124Z&quot;}}" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>?pf.add_parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="b3e790e9-0a97-4cca-a09e-30ae2aa7dbc9" class="cell">
+<div id="58437ee2-34d5-490b-af7e-101521070d5c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.540408Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.540231Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.562700Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.562142Z&quot;}}" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#need a spatial reference to use pilot points. this means xoff, yoff, rotation, epsg</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m<span class="op">=</span>sim.get_model()</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>m.modelgrid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>k_pars <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(new_ws) <span class="cf">if</span> <span class="st">'k_'</span> <span class="kw">in</span> f <span class="kw">and</span> f.endswith(<span class="st">'.ref'</span>)]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>k_pars</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> k_pars:</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    pf.add_parameters(f,par_type<span class="op">=</span><span class="st">'constant'</span>,upper_bound<span class="op">=</span><span class="dv">20</span>,lower_bound<span class="op">=</span><span class="fl">0.05</span>,pargp<span class="op">=</span><span class="st">"cn-"</span><span class="op">+</span>f,par_name_base<span class="op">=</span><span class="st">"cn-"</span><span class="op">+</span>f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2025-07-18 11:01:43.542198 transform was not passed, setting default transform to 'log'
+2025-07-18 11:01:43.542453 starting: adding constant type m style parameters for file(s) ['k_aq.ref']
+2025-07-18 11:01:43.542559 starting: loading array template/k_aq.ref
+2025-07-18 11:01:43.542922 finished: loading array template/k_aq.ref took: 0:00:00.000363
+2025-07-18 11:01:43.542958 loaded array 'simple_ies/k_aq.ref' of shape (40, 25)
+2025-07-18 11:01:43.543687 starting: writing array-style template file 'template/cn-k_aq.ref_inst0_constant.csv.tpl'
+2025-07-18 11:01:43.543730 starting: writing template file template/cn-k_aq.ref_inst0_constant.csv.tpl for ['cn-k_aq.ref_inst:0']
+2025-07-18 11:01:43.548225 finished: writing template file template/cn-k_aq.ref_inst0_constant.csv.tpl for ['cn-k_aq.ref_inst:0'] took: 0:00:00.004495
+2025-07-18 11:01:43.548261 starting: writing array-based template file 'template/cn-k_aq.ref_inst0_constant.csv.tpl'
+2025-07-18 11:01:43.551994 finished: adding constant type m style parameters for file(s) ['k_aq.ref'] took: 0:00:00.009541
+2025-07-18 11:01:43.552042 transform was not passed, setting default transform to 'log'
+2025-07-18 11:01:43.552099 starting: adding constant type m style parameters for file(s) ['k_clay.ref']
+2025-07-18 11:01:43.552163 starting: loading array template/k_clay.ref
+2025-07-18 11:01:43.552414 finished: loading array template/k_clay.ref took: 0:00:00.000251
+2025-07-18 11:01:43.552447 loaded array 'simple_ies/k_clay.ref' of shape (40, 25)
+2025-07-18 11:01:43.553092 starting: writing array-style template file 'template/cn-k_clay.ref_inst0_constant.csv.tpl'
+2025-07-18 11:01:43.553132 starting: writing template file template/cn-k_clay.ref_inst0_constant.csv.tpl for ['cn-k_clay.ref_inst:0']
+2025-07-18 11:01:43.557188 finished: writing template file template/cn-k_clay.ref_inst0_constant.csv.tpl for ['cn-k_clay.ref_inst:0'] took: 0:00:00.004056
+2025-07-18 11:01:43.557226 starting: writing array-based template file 'template/cn-k_clay.ref_inst0_constant.csv.tpl'
+2025-07-18 11:01:43.560688 finished: adding constant type m style parameters for file(s) ['k_clay.ref'] took: 0:00:00.008589</code></pre>
+</div>
+</div>
+<div id="41e10938-c9fa-4ffd-8f83-19beb0098db3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.564381Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.564106Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:43.701502Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:43.701031Z&quot;}}" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#for pilot points, we first need to build a variogram, which describes the underlying spatial correlation structure of the variable</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pp_v <span class="op">=</span> pyemu.geostats.ExpVario(contribution<span class="op">=</span><span class="fl">1.0</span>, a<span class="op">=</span><span class="dv">5000</span>) <span class="co">#rule of thumb is that range should be atleast 2x pp spacing (delr= 500</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pp_gs <span class="op">=</span> pyemu.geostats.GeoStruct(variograms<span class="op">=</span>pp_v,transform<span class="op">=</span><span class="st">'log'</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>pp_gs.plot()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="dv">500</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple_pstfrom_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="26ff0d24-fd8f-47ec-82a4-9be3f91ac23f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:43.703139Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:43.702984Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.646123Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.645528Z&quot;}}" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> k_pars:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    base <span class="op">=</span> f.split(<span class="st">'.'</span>)[<span class="dv">0</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    pf.add_parameters(f,par_type<span class="op">=</span><span class="st">'pilotpoint'</span>,upper_bound<span class="op">=</span><span class="dv">20</span>,lower_bound<span class="op">=</span><span class="fl">0.05</span>,pp_space<span class="op">=</span><span class="dv">3</span>,geostruct<span class="op">=</span>pp_gs,pargp<span class="op">=</span><span class="st">"pp-"</span><span class="op">+</span>f,par_name_base<span class="op">=</span><span class="st">"pp-"</span><span class="op">+</span>f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2025-07-18 11:01:43.704203 transform was not passed, setting default transform to 'log'
+2025-07-18 11:01:43.704613 starting: adding pilotpoint type m style parameters for file(s) ['k_aq.ref']
+2025-07-18 11:01:43.704679 starting: using geostruct:name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:5000.0,anisotropy:1.0,bearing:0.0
+
+2025-07-18 11:01:43.704759 starting: loading array template/k_aq.ref
+2025-07-18 11:01:43.705402 finished: loading array template/k_aq.ref took: 0:00:00.000643
+2025-07-18 11:01:43.705440 loaded array 'simple_ies/k_aq.ref' of shape (40, 25)
+2025-07-18 11:01:43.706238 starting: writing array-style template file 'template/pp-k_aq.ref_inst0_pilotpoint.csv.tpl'
+2025-07-18 11:01:43.706287 starting: setting up pilot point parameters
+2025-07-18 11:01:43.706357 WARNING: Directly passing 'pp_space' has been deprecated and will eventually be removed, please use pp_options['pp_space'] instead.
+2025-07-18 11:01:43.706448 'use_pp_zones' not set in pp_options, Setting to default value: [False]
+2025-07-18 11:01:43.706505 'spatial_reference' not set in pp_options, Setting to default value: [None]
+2025-07-18 11:01:43.706536 'try_use_ppu' not set in pp_options, Setting to default value: [True]
+2025-07-18 11:01:43.706556 'num_threads' not set in pp_options, Setting to default value: [10]
+2025-07-18 11:01:43.706572 'minpts_interp' not set in pp_options, Setting to default value: [1]
+2025-07-18 11:01:43.706586 'maxpts_interp' not set in pp_options, Setting to default value: [20]
+2025-07-18 11:01:43.706695 'search_radius' not set in pp_options, Setting to default value: [10000000000.0]
+2025-07-18 11:01:43.706716 'fill_value' not set in pp_options, Setting to default value: [1.0]
+2025-07-18 11:01:43.706730 'lower_limit' not set in pp_options, Setting to default value: [1e-30]
+2025-07-18 11:01:43.706741 'upper_limit' not set in pp_options, Setting to default value: [1e+30]
+2025-07-18 11:01:43.706903 WARNING: `use_ppu` requested but failed to import
+falling back to pyemu pp methods
+2025-07-18 11:01:43.706938 No spatial reference (containing cell spacing) passed.
+2025-07-18 11:01:43.706955 OK - using spatial reference in parent object.
+2025-07-18 11:01:43.732278 104 pilot point parameters created
+2025-07-18 11:01:43.732455 pilot point 'pargp': pp-k_aq.ref
+2025-07-18 11:01:43.732498 finished: setting up pilot point parameters took: 0:00:00.026211
+2025-07-18 11:01:43.744229 starting: calculating factors for pargp=pp-k_aq.ref
+2025-07-18 11:01:43.744456 saving krige variance file:template/pp-k_aq.ref_inst0pp.var.dat
+2025-07-18 11:01:43.744482 saving krige factors file:template/pp-k_aq.ref_inst0pp.fac
+starting interp point loop for 1000 points</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/dependencies/pyemu/pyemu/logger.py:100: PyemuWarning: 2025-07-18 11:01:43.706357 WARNING: Directly passing 'pp_space' has been deprecated and will eventually be removed, please use pp_options['pp_space'] instead.
+
+/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/dependencies/pyemu/pyemu/logger.py:100: PyemuWarning: 2025-07-18 11:01:43.706903 WARNING: `use_ppu` requested but failed to import
+falling back to pyemu pp methods
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>starting 0
+starting 1
+starting 2
+starting 3
+starting 4
+starting 5
+starting 6
+starting 7
+starting 8
+starting 9
+took 0.830358 seconds
+2025-07-18 11:01:44.600321 finished: calculating factors for pargp=pp-k_aq.ref took: 0:00:00.856092
+2025-07-18 11:01:44.600448 starting: writing array-based template file 'template/pp-k_aq.ref_inst0pp.dat.tpl'
+2025-07-18 11:01:44.600540 saving zone array template/pp-k_aq.ref_inst0pp.dat.zone for tpl file template/pp-k_aq.ref_inst0pp.dat.tpl
+2025-07-18 11:01:44.604017 finished: adding pilotpoint type m style parameters for file(s) ['k_aq.ref'] took: 0:00:00.899404
+2025-07-18 11:01:44.604865 transform was not passed, setting default transform to 'log'
+2025-07-18 11:01:44.604990 starting: adding pilotpoint type m style parameters for file(s) ['k_clay.ref']
+2025-07-18 11:01:44.605040 finished: using geostruct:name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:5000.0,anisotropy:1.0,bearing:0.0
+ took: 0:00:00.900361
+2025-07-18 11:01:44.605114 starting: loading array template/k_clay.ref
+2025-07-18 11:01:44.605427 finished: loading array template/k_clay.ref took: 0:00:00.000313
+2025-07-18 11:01:44.605461 loaded array 'simple_ies/k_clay.ref' of shape (40, 25)
+2025-07-18 11:01:44.606165 starting: writing array-style template file 'template/pp-k_clay.ref_inst0_pilotpoint.csv.tpl'
+2025-07-18 11:01:44.606213 starting: setting up pilot point parameters
+2025-07-18 11:01:44.606318 WARNING: Directly passing 'pp_space' has been deprecated and will eventually be removed, please use pp_options['pp_space'] instead.
+2025-07-18 11:01:44.606435 'use_pp_zones' not set in pp_options, Setting to default value: [False]
+2025-07-18 11:01:44.606460 'spatial_reference' not set in pp_options, Setting to default value: [None]
+2025-07-18 11:01:44.606478 'try_use_ppu' not set in pp_options, Setting to default value: [True]
+2025-07-18 11:01:44.606511 'num_threads' not set in pp_options, Setting to default value: [10]
+2025-07-18 11:01:44.606528 'minpts_interp' not set in pp_options, Setting to default value: [1]
+2025-07-18 11:01:44.606542 'maxpts_interp' not set in pp_options, Setting to default value: [20]
+2025-07-18 11:01:44.606554 'search_radius' not set in pp_options, Setting to default value: [10000000000.0]
+2025-07-18 11:01:44.606568 'fill_value' not set in pp_options, Setting to default value: [1.0]
+2025-07-18 11:01:44.606581 'lower_limit' not set in pp_options, Setting to default value: [1e-30]
+2025-07-18 11:01:44.606597 'upper_limit' not set in pp_options, Setting to default value: [1e+30]
+2025-07-18 11:01:44.606942 WARNING: `use_ppu` requested but failed to import
+falling back to pyemu pp methods
+2025-07-18 11:01:44.606980 No spatial reference (containing cell spacing) passed.
+2025-07-18 11:01:44.606998 OK - using spatial reference in parent object.
+2025-07-18 11:01:44.629116 104 pilot point parameters created
+2025-07-18 11:01:44.629236 pilot point 'pargp': pp-k_clay.ref
+2025-07-18 11:01:44.629261 finished: setting up pilot point parameters took: 0:00:00.023048
+2025-07-18 11:01:44.640685 reusing factors
+2025-07-18 11:01:44.640776 starting: writing array-based template file 'template/pp-k_clay.ref_inst0pp.dat.tpl'
+2025-07-18 11:01:44.640830 saving zone array template/pp-k_clay.ref_inst0pp.dat.zone for tpl file template/pp-k_clay.ref_inst0pp.dat.tpl
+2025-07-18 11:01:44.643621 finished: adding pilotpoint type m style parameters for file(s) ['k_clay.ref'] took: 0:00:00.038631</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/dependencies/pyemu/pyemu/logger.py:100: PyemuWarning: 2025-07-18 11:01:44.606318 WARNING: Directly passing 'pp_space' has been deprecated and will eventually be removed, please use pp_options['pp_space'] instead.
+
+/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/dependencies/pyemu/pyemu/logger.py:100: PyemuWarning: 2025-07-18 11:01:44.606942 WARNING: `use_ppu` requested but failed to import
+falling back to pyemu pp methods
+</code></pre>
+</div>
+</div>
+<div id="58464e8b-42f9-4415-80ec-90c92ebe2380" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.647898Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.647729Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.652872Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.652314Z&quot;}}" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>?pf.add_observations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="789ca711-06f7-468e-86da-351f1c1e633e" class="cell">
+<div id="0747850a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.654335Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.654187Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.657909Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.657537Z&quot;}}" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pf <span class="op">=</span> pyemu.utils.PstFrom(original_d<span class="op">=</span>new_ws,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                         new_d<span class="op">=</span><span class="st">'template'</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                         remove_existing<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                         start_datetime<span class="op">=</span><span class="st">"1-1-2025"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                         spatial_reference<span class="op">=</span>m.modelgrid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>[f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(new_ws) <span class="cf">if</span> f.endswith(<span class="st">'.csv'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>['chd.csv', 'at.csv', 'riv.csv', 'at.wt.csv', 'at.budget.csv']</code></pre>
+</div>
+</div>
+<div id="5c345493-088a-48d0-add7-b95cf4632c42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.659370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.659210Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.709409Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.708958Z&quot;}}" data-execution_count="16">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>obs_csvs <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(new_ws) <span class="cf">if</span> f.endswith(<span class="st">'.csv'</span>)]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> obs_csvs:</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(os.path.join(new_ws,f))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    pf.add_observations(f,index_cols<span class="op">=</span><span class="st">'time'</span>,use_cols<span class="op">=</span>df.columns.tolist()[<span class="dv">1</span>:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2025-07-18 11:01:44.663264 starting: adding observations from output file chd.csv
+2025-07-18 11:01:44.663354 starting: adding observations from tabular output file '['chd.csv']'
+2025-07-18 11:01:44.663421 starting: reading list-style file: template/chd.csv
+2025-07-18 11:01:44.664423 finished: reading list-style file: template/chd.csv took: 0:00:00.001002
+2025-07-18 11:01:44.664936 starting: building insfile for tabular output file chd.csv
+2025-07-18 11:01:44.668106 finished: building insfile for tabular output file chd.csv took: 0:00:00.003170
+2025-07-18 11:01:44.668177 starting: adding observation from instruction file 'template/chd.csv.ins'
+2025-07-18 11:01:44.670660 finished: adding observation from instruction file 'template/chd.csv.ins' took: 0:00:00.002483
+2025-07-18 11:01:44.671175 finished: adding observations from tabular output file '['chd.csv']' took: 0:00:00.007821
+2025-07-18 11:01:44.671249 finished: adding observations from output file chd.csv took: 0:00:00.007985
+2025-07-18 11:01:44.672116 starting: adding observations from output file at.csv
+2025-07-18 11:01:44.672169 starting: adding observations from tabular output file '['at.csv']'
+2025-07-18 11:01:44.672223 starting: reading list-style file: template/at.csv
+2025-07-18 11:01:44.673969 finished: reading list-style file: template/at.csv took: 0:00:00.001746
+2025-07-18 11:01:44.675446 starting: building insfile for tabular output file at.csv
+2025-07-18 11:01:44.678152 finished: building insfile for tabular output file at.csv took: 0:00:00.002706
+2025-07-18 11:01:44.678219 starting: adding observation from instruction file 'template/at.csv.ins'
+2025-07-18 11:01:44.680620 finished: adding observation from instruction file 'template/at.csv.ins' took: 0:00:00.002401
+2025-07-18 11:01:44.681115 finished: adding observations from tabular output file '['at.csv']' took: 0:00:00.008946
+2025-07-18 11:01:44.681182 finished: adding observations from output file at.csv took: 0:00:00.009066
+2025-07-18 11:01:44.681820 starting: adding observations from output file riv.csv
+2025-07-18 11:01:44.681872 starting: adding observations from tabular output file '['riv.csv']'
+2025-07-18 11:01:44.681923 starting: reading list-style file: template/riv.csv
+2025-07-18 11:01:44.682717 finished: reading list-style file: template/riv.csv took: 0:00:00.000794
+2025-07-18 11:01:44.683173 starting: building insfile for tabular output file riv.csv
+2025-07-18 11:01:44.685694 finished: building insfile for tabular output file riv.csv took: 0:00:00.002521
+2025-07-18 11:01:44.685760 starting: adding observation from instruction file 'template/riv.csv.ins'
+2025-07-18 11:01:44.688193 finished: adding observation from instruction file 'template/riv.csv.ins' took: 0:00:00.002433
+2025-07-18 11:01:44.688734 finished: adding observations from tabular output file '['riv.csv']' took: 0:00:00.006862
+2025-07-18 11:01:44.688806 finished: adding observations from output file riv.csv took: 0:00:00.006986
+2025-07-18 11:01:44.689605 starting: adding observations from output file at.wt.csv
+2025-07-18 11:01:44.689659 starting: adding observations from tabular output file '['at.wt.csv']'
+2025-07-18 11:01:44.689709 starting: reading list-style file: template/at.wt.csv
+2025-07-18 11:01:44.691410 finished: reading list-style file: template/at.wt.csv took: 0:00:00.001701
+2025-07-18 11:01:44.692864 starting: building insfile for tabular output file at.wt.csv
+2025-07-18 11:01:44.695421 finished: building insfile for tabular output file at.wt.csv took: 0:00:00.002557
+2025-07-18 11:01:44.695503 starting: adding observation from instruction file 'template/at.wt.csv.ins'
+2025-07-18 11:01:44.697968 finished: adding observation from instruction file 'template/at.wt.csv.ins' took: 0:00:00.002465
+2025-07-18 11:01:44.698538 finished: adding observations from tabular output file '['at.wt.csv']' took: 0:00:00.008879
+2025-07-18 11:01:44.698611 finished: adding observations from output file at.wt.csv took: 0:00:00.009006
+2025-07-18 11:01:44.699305 starting: adding observations from output file at.budget.csv
+2025-07-18 11:01:44.699353 starting: adding observations from tabular output file '['at.budget.csv']'
+2025-07-18 11:01:44.699399 starting: reading list-style file: template/at.budget.csv
+2025-07-18 11:01:44.700717 finished: reading list-style file: template/at.budget.csv took: 0:00:00.001318
+2025-07-18 11:01:44.701752 starting: building insfile for tabular output file at.budget.csv
+2025-07-18 11:01:44.704298 finished: building insfile for tabular output file at.budget.csv took: 0:00:00.002546
+2025-07-18 11:01:44.704364 starting: adding observation from instruction file 'template/at.budget.csv.ins'
+2025-07-18 11:01:44.706871 finished: adding observation from instruction file 'template/at.budget.csv.ins' took: 0:00:00.002507
+2025-07-18 11:01:44.707390 finished: adding observations from tabular output file '['at.budget.csv']' took: 0:00:00.008037
+2025-07-18 11:01:44.707457 finished: adding observations from output file at.budget.csv took: 0:00:00.008152</code></pre>
+</div>
+</div>
+<div id="b433ee2a-bfeb-40b3-93c6-618c5ce8c0f4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.710925Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.710770Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.732733Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.732280Z&quot;}}" data-execution_count="17">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> k_pars:</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    pf.add_observations(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2025-07-18 11:01:44.711539 starting: adding observations from output file k_aq.ref
+2025-07-18 11:01:44.711611 starting: adding observations from array output file 'k_aq.ref'
+2025-07-18 11:01:44.713342 starting: adding observation from instruction file 'template/k_aq.ref.ins'
+2025-07-18 11:01:44.721448 finished: adding observation from instruction file 'template/k_aq.ref.ins' took: 0:00:00.008106
+2025-07-18 11:01:44.721594 finished: adding observations from array output file 'k_aq.ref' took: 0:00:00.009983
+2025-07-18 11:01:44.721665 finished: adding observations from output file k_aq.ref took: 0:00:00.010126
+2025-07-18 11:01:44.721689 starting: adding observations from output file k_clay.ref
+2025-07-18 11:01:44.721717 starting: adding observations from array output file 'k_clay.ref'
+2025-07-18 11:01:44.722648 starting: adding observation from instruction file 'template/k_clay.ref.ins'
+2025-07-18 11:01:44.730722 finished: adding observation from instruction file 'template/k_clay.ref.ins' took: 0:00:00.008074
+2025-07-18 11:01:44.730859 finished: adding observations from array output file 'k_clay.ref' took: 0:00:00.009142
+2025-07-18 11:01:44.730924 finished: adding observations from output file k_clay.ref took: 0:00:00.009235</code></pre>
+</div>
+</div>
+<div id="4caa4783-6f37-49c7-a5d8-b19289062a25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.734243Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.734090Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.736679Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.736245Z&quot;}}" data-execution_count="18">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pf.mod_sys_cmds.append(<span class="st">'mf6'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="2b2412d5-bdc6-4d15-ac0c-c6b4d363da31" class="cell">
+<div id="466eac0f-9fe4-4fe1-8ede-51503e5bf279" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.738056Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.737916Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.741730Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.741217Z&quot;}}" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>?pf.add_parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>?pf.draw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="58437ee2-34d5-490b-af7e-101521070d5c" class="cell">
+<div id="8f0aa111-aa55-4ce2-ae66-b2a1bcc70cfa" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.743208Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.743048Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.787446Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.787013Z&quot;}}" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>k_pars <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(new_ws) <span class="cf">if</span> <span class="st">'k_'</span> <span class="kw">in</span> f <span class="kw">and</span> f.endswith(<span class="st">'.ref'</span>)]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>k_pars</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> k_pars:</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    pf.add_parameters(f,par_type<span class="op">=</span><span class="st">'constant'</span>,upper_bound<span class="op">=</span><span class="dv">20</span>,lower_bound<span class="op">=</span><span class="fl">0.05</span>,pargp<span class="op">=</span><span class="st">"cn-"</span><span class="op">+</span>f,par_name_base<span class="op">=</span><span class="st">"cn-"</span><span class="op">+</span>f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pst <span class="op">=</span> pf.build_pst(filename<span class="op">=</span>os.path.join(pf.new_d,<span class="st">'at.pst'</span>),version<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>noptmax:0, npar_adj:210, nnz_obs:2048
+2025-07-18 11:01:44.778473 forward_run line:pyemu.os_utils.run(r'mf6')
+</code></pre>
+</div>
+</div>
+<div id="367606d0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.789010Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.788855Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.800633Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.800120Z&quot;}}" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in the recharge parameter</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> pst.add_parameters(<span class="st">'./simple_ies/at.rch.tpl'</span>, pst_path<span class="op">=</span><span class="st">'.'</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> pst.parameter_data</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'parval1'</span>] <span class="op">=</span> r.loc[<span class="st">'rch'</span>].parval1</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'parlbnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rch'</span>].parval1 <span class="op">*</span> <span class="fl">.8</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'parubnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rch'</span>].parval1 <span class="op">*</span> <span class="fl">1.2</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'pargp'</span>] <span class="op">=</span> <span class="st">'recharge'</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 pars added from template file ./at.rch.tpl</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>parnme            rch
+partrans          log
+parchglim      factor
+parval1      0.003641
+parlbnd      0.002913
+parubnd      0.004369
+pargp        recharge
+scale             1.0
+offset            0.0
+dercom              1
+i                 NaN
+inst              NaN
+j                 NaN
+pname             NaN
+pstyle            NaN
+ptype             NaN
+zone              NaN
+Name: rch, dtype: object</code></pre>
+</div>
+</div>
+<div id="6e19ead8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.802395Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.801944Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.816085Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.815582Z&quot;}}" data-execution_count="22">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rb <span class="op">=</span> pst.add_parameters(<span class="st">'./simple_ies/riv.ref.tpl'</span>, pst_path<span class="op">=</span><span class="st">'.'</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>rb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 pars added from template file ./riv.ref.tpl</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">parnme</th>
+<th data-quarto-table-cell-role="th">partrans</th>
+<th data-quarto-table-cell-role="th">parchglim</th>
+<th data-quarto-table-cell-role="th">parval1</th>
+<th data-quarto-table-cell-role="th">parlbnd</th>
+<th data-quarto-table-cell-role="th">parubnd</th>
+<th data-quarto-table-cell-role="th">pargp</th>
+<th data-quarto-table-cell-role="th">scale</th>
+<th data-quarto-table-cell-role="th">offset</th>
+<th data-quarto-table-cell-role="th">dercom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">rv1</td>
+<td>rv1</td>
+<td>log</td>
+<td>factor</td>
+<td>100000.0</td>
+<td>1.100000e-10</td>
+<td>1.100000e+10</td>
+<td>pargp</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="8cc18361" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.817791Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.817418Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.823342Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.822844Z&quot;}}" data-execution_count="23">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and the riverbed conductance</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> pst.parameter_data</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'parval1'</span>] <span class="op">=</span> rb.loc[<span class="st">'rv1'</span>].parval1</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'parlbnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rv1'</span>].parval1 <span class="op">*</span> <span class="fl">.1</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'parubnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rv1'</span>].parval1 <span class="op">*</span> <span class="fl">10.0</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'pargp'</span>] <span class="op">=</span> <span class="st">'riverbed'</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>parnme             rv1
+partrans           log
+parchglim       factor
+parval1       100000.0
+parlbnd        10000.0
+parubnd      1000000.0
+pargp         riverbed
+scale              1.0
+offset             0.0
+dercom               1
+i                  NaN
+inst               NaN
+j                  NaN
+pname              NaN
+pstyle             NaN
+ptype              NaN
+zone               NaN
+Name: rv1, dtype: object</code></pre>
+</div>
+</div>
+<div id="7518b65b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.825081Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.824706Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:44.847896Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:44.847432Z&quot;}}" data-execution_count="24">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">'at.pst'</span>),version<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>noptmax:0, npar_adj:212, nnz_obs:2048</code></pre>
+</div>
+</div>
+<div id="a4d0f7ec-118c-4d45-b5fc-9ebfe9722818" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:44.849425Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:44.849265Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:45.008862Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:45.008385Z&quot;}}" data-execution_count="25">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#draw prior ensemble that accounts for PP spatial correlation (this is for later for when we want to use iES)</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>pe <span class="op">=</span> pf.draw(num_reals<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>pe.enforce()</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>pe.to_csv(os.path.join(pf.new_d,<span class="st">'prior.csv'</span>))</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2025-07-18 11:01:44.850222 starting: drawing realizations
+2025-07-18 11:01:44.850817 starting: Drawing 212 non-specsim pars
+building diagonal cov
+processing  name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:5000.0,anisotropy:1.0,bearing:0.0
+
+working on pargroups ['pp-k_aq.ref']
+build cov matrix
+done
+getting diag var cov 104
+scaling full cov by diag var cov
+working on pargroups ['pp-k_clay.ref']
+build cov matrix
+done
+getting diag var cov 104
+scaling full cov by diag var cov
+adding remaining parameters to diagonal
+2025-07-18 11:01:44.907787 finished: Drawing 212 non-specsim pars took: 0:00:00.056970
+2025-07-18 11:01:44.907856 finished: drawing realizations took: 0:00:00.057634</code></pre>
+</div>
+</div>
+<div id="87288420-69e9-4b1c-9e34-0347d1bce101" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:45.010895Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:45.010580Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:45.044807Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:45.044359Z&quot;}}" data-execution_count="26">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pst <span class="op">=</span> pyemu.Pst(filename<span class="op">=</span>os.path.join(pf.new_d,<span class="st">'at.pst'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="41e10938-c9fa-4ffd-8f83-19beb0098db3" class="cell">
+<div id="f74eaf99" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:45.046718Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:45.046543Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:45.056145Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:45.055654Z&quot;}}" data-execution_count="27">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#for pilot points, we first need to build a variogram, which describes the underlying spatial correlation structure of the variable</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pp_v <span class="op">=</span> pyemu.geostats.ExpVario(contribution<span class="op">=</span><span class="fl">1.0</span>, a<span class="op">=</span><span class="dv">5000</span>) <span class="co">#rule of thumb is that range should be atleast 2x pp spacing (delr= 500</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pp_gs <span class="op">=</span> pyemu.geostats.GeoStruct(variograms<span class="op">=</span>pp_v,transform<span class="op">=</span><span class="st">'log'</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>pp_gs.plot()</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="dv">500</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pst.pestpp_options[<span class="st">"ies_par_en"</span>] <span class="op">=</span> <span class="st">"prior.csv"</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>obs <span class="op">=</span> pst.observation_data</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">obsnme</th>
+<th data-quarto-table-cell-role="th">obsval</th>
+<th data-quarto-table-cell-role="th">weight</th>
+<th data-quarto-table-cell-role="th">obgnme</th>
+<th data-quarto-table-cell-role="th">i</th>
+<th data-quarto-table-cell-role="th">j</th>
+<th data-quarto-table-cell-role="th">oname</th>
+<th data-quarto-table-cell-role="th">otype</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">usecol</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">obsnme</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:chd.csv_otype:lst_usecol:chdflow_time:1</td>
+<td>oname:chd.csv_otype:lst_usecol:chdflow_time:1</td>
+<td>431437.220303</td>
+<td>1.0</td>
+<td>oname:chd.csv_otype:lst_usecol:chdflow</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>chd.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>chdflow</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w01_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w01_time:1</td>
+<td>11.558825</td>
+<td>1.0</td>
+<td>oname:at.csv_otype:lst_usecol:w01</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w02_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w02_time:1</td>
+<td>11.305251</td>
+<td>1.0</td>
+<td>oname:at.csv_otype:lst_usecol:w02</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w02</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w03_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w03_time:1</td>
+<td>11.355743</td>
+<td>1.0</td>
+<td>oname:at.csv_otype:lst_usecol:w03</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w03</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w04_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w04_time:1</td>
+<td>10.497010</td>
+<td>1.0</td>
+<td>oname:at.csv_otype:lst_usecol:w04</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:k_clay_otype:arr_i:9_j:5</td>
+<td>oname:k_clay_otype:arr_i:9_j:5</td>
+<td>180.925900</td>
+<td>1.0</td>
+<td>oname:k_clay.ref_otype:arr</td>
+<td>9</td>
+<td>5</td>
+<td>k</td>
+<td>arr</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:k_clay_otype:arr_i:9_j:6</td>
+<td>oname:k_clay_otype:arr_i:9_j:6</td>
+<td>180.925900</td>
+<td>1.0</td>
+<td>oname:k_clay.ref_otype:arr</td>
+<td>9</td>
+<td>6</td>
+<td>k</td>
+<td>arr</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:k_clay_otype:arr_i:9_j:7</td>
+<td>oname:k_clay_otype:arr_i:9_j:7</td>
+<td>180.925900</td>
+<td>1.0</td>
+<td>oname:k_clay.ref_otype:arr</td>
+<td>9</td>
+<td>7</td>
+<td>k</td>
+<td>arr</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:k_clay_otype:arr_i:9_j:8</td>
+<td>oname:k_clay_otype:arr_i:9_j:8</td>
+<td>180.925900</td>
+<td>1.0</td>
+<td>oname:k_clay.ref_otype:arr</td>
+<td>9</td>
+<td>8</td>
+<td>k</td>
+<td>arr</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:k_clay_otype:arr_i:9_j:9</td>
+<td>oname:k_clay_otype:arr_i:9_j:9</td>
+<td>180.925900</td>
+<td>1.0</td>
+<td>oname:k_clay.ref_otype:arr</td>
+<td>9</td>
+<td>9</td>
+<td>k</td>
+<td>arr</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>2048 rows × 10 columns</p>
+</div>
+</div>
+</div>
+<div id="9337e772-a687-409b-b47a-06ec6f460e17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:45.057925Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:45.057528Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.185956Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.185470Z&quot;}}" data-execution_count="28">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'pestpp-ies at.pst'</span>,cwd<span class="op">=</span><span class="st">'template'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>./pestpp-ies at.pst
+
+
+             pestpp-ies: a GLM iterative ensemble smoother
+
+                   by the PEST++ development team
+
+
+version: 5.2.21
+binary compiled on Jul 14 2025 at 14:36:32
+
+started at 07/18/25 11:01:45
+...processing command line: ' ./pestpp-ies at.pst'
+...using serial run manager
+
+using control file: "at.pst"
+in directory: "/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/notebooks/template"
+on host: "pkrvmq0rgcvqdmg"
+
+processing control file at.pst
+
+Note: 'NOPTMAX' == 0, switching to forgiveness mode when checking inputs
+
+noptmax = 0, resetting max_run_fail = 1
+checking model IO files...done
+              starting serial run manager ...
+
+
+  ---  initializing  ---  
+
+  ---  'noptmax'=0, running control file parameter values and quitting  ---  
+...saving control file parameter ensemble to  at.base.par.csv
+...initializing prior parameter covariance matrix
+...parcov loaded  from parameter bounds, using par_sigma_range 4
+...running control file parameter values
+
+
+
+    ---  starting serial run manager for 1 runs ---    
+
+
+07/18/25 11:01:45 processing template files with 1 threads...
+07/18/25 11:01:45 done, took 0.009 seconds
+07/18/25 11:01:45 calling forward run command(s)
+07/18/25 11:01:45 calling forward run command: 'python forward_run.py' 
+...pid: 3356
+                                   MODFLOW 6
+                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL
+                   VERSION 6.3.0 release candidate 02/06/2022
+                               ***DEVELOP MODE***
+
+   MODFLOW 6 compiled Feb 06 2022 02:33:33 with Intel(R) Fortran Intel(R) 64
+   Compiler Classic for applications running on Intel(R) 64, Version 2021.5.0
+                             Build 20211109_000000
+
+This software is preliminary or provisional and is subject to 
+revision. It is being provided to meet the need for timely best 
+science. The software has not received final approval by the U.S. 
+Geological Survey (USGS). No warranty, expressed or implied, is made 
+by the USGS or the U.S. Government as to the functionality of the 
+software and related material nor shall the fact of release 
+constitute any such warranty. The software is provided on the 
+condition that neither the USGS nor the U.S. Government shall be held 
+liable for any damages resulting from the authorized or unauthorized 
+use of the software.
+
+ 
+ Run start date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:45
+ 
+ Writing simulation list file: mfsim.lst
+ Using Simulation name file: mfsim.nam
+ 
+    Solving:  Stress period:     1    Time step:     1
+ 
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:45
+ Elapsed run time:  0.052 Seconds
+ 
+ Normal termination of simulation.
+error removing tmp file:chd.csv
+error removing tmp file:at.csv
+error removing tmp file:riv.csv
+error removing tmp file:at.wt.csv
+error removing tmp file:at.budget.csv
+error removing tmp file:k_aq.ref
+error removing tmp file:k_clay.ref
+starting list mlt 2025-07-18 11:01:45.919310
+number of chunks to process: 1
+process 0  processed  0 process_list_file calls
+finished list mlt 2025-07-18 11:01:45.919387
+starting fac2real 2025-07-18 11:01:45.919395
+number of chunks to process: 1
+process 0  processed  2 fac2real calls
+finished fac2real 2025-07-18 11:01:45.934703
+starting arr mlt 2025-07-18 11:01:45.934710
+number of chunks to process: 1
+process 0  processed  2 process_array_file calls
+finished arr mlt 2025-07-18 11:01:45.939902
+./mf6
+...exit_code: 3356
+...status: 0
+07/18/25 11:01:46 forward run command(s) finished, took 1.05 seconds
+07/18/25 11:01:46 processing instruction files with 1 threads...
+thread 0 processed 7 instruction files
+07/18/25 11:01:46 done, took 0.007 seconds
+
+
+--&gt;07/18/25 11:01:46 run complete, took: 1.067 seconds
+--&gt;1 of 1 complete, 0 failed
+
+
+
+
+
+    ---  serial run manager runs summary:  ---    
+    1 of 1 complete, 0 failed
+    process took : 1.067 seconds
+
+
+
+
+...saving results from control file parameter value run to  at.base.obs.csv
+
+  ---  control file parameter phi report:  ---  
+       phi type           mean            std            min            max
+       measured              0              0              0              0
+         actual              0              0              0              0
+     note: 'measured' phi reported above includes 
+           realizations of measurement noise, 
+           'actual' phi does not.
+  ---  observation group phi summary ---  
+       (computed using 'actual' phi)
+           (sorted by mean phi)
+group                                                     count  nconflict      mean       std       min       max   percent       std
+oname:at.wt.csv_otype:lst_usecol:u11                          1          0         0         0         0         0         0         0
+oname:at.csv_otype:lst_usecol:w16                             1          0         0         0         0         0         0         0
+oname:at.csv_otype:lst_usecol:w17                             1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u01                          1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u02                          1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u03                          1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u04                          1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u05                          1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u06                          1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u07                          1          0         0         0         0         0         0         0
+oname:at.wt.csv_otype:lst_usecol:u08                          1          0         0         0         0         0         0         0
+    Note: only the first 10 highest mean phi groups are listed. See rec file for full listing
+
+saved par and rei files for realization BASE
+
+
+pestpp-ies analysis complete...
+started at 07/18/25 11:01:45
+finished at 07/18/25 11:01:46
+took 0.0166667 minutes</code></pre>
+</div>
+</div>
+<div id="b4e301be-0abd-41f3-a20a-d8ea8f5612aa" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.187770Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.187364Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.195208Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.194746Z&quot;}}" data-execution_count="29">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>pst.set_res(os.path.join(pf.new_d,<span class="st">"at.base.rei"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="26ff0d24-fd8f-47ec-82a4-9be3f91ac23f" class="cell">
+<div id="6bec3dba-0c4b-4ef1-ae80-40b74def7b7e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.196886Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.196589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.260268Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.259754Z&quot;}}" data-execution_count="30">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> k_pars:</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    base <span class="op">=</span> f.split(<span class="st">'.'</span>)[<span class="dv">0</span>]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    pf.add_parameters(f,par_type<span class="op">=</span><span class="st">'pilotpoint'</span>,upper_bound<span class="op">=</span><span class="dv">20</span>,lower_bound<span class="op">=</span><span class="fl">0.05</span>,pp_space<span class="op">=</span><span class="dv">3</span>,geostruct<span class="op">=</span>pp_gs,pargp<span class="op">=</span><span class="st">"pp-"</span><span class="op">+</span>f,par_name_base<span class="op">=</span><span class="st">"pp-"</span><span class="op">+</span>f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>pst.phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>2.6616070244088824e-11</code></pre>
+</div>
+</div>
+<div id="ef5c5139-8f25-4a28-92fb-27c9cecb860e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.261909Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.261639Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.323555Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.323066Z&quot;}}" data-execution_count="31">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> pst.phi <span class="op">&lt;</span> <span class="fl">1e-6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="58464e8b-42f9-4415-80ec-90c92ebe2380" class="cell">
+<div id="8304bd18-4acc-4208-897e-989509afff75" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.325517Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.325225Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.327910Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.327413Z&quot;}}" data-execution_count="32">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>?pf.add_observations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#zero everything out for starters</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>obs.weight <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="0747850a" class="cell">
+<div id="13288f1e-589c-44d9-b50e-eddac0a8e20a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.329587Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.329153Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.338118Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.337666Z&quot;}}" data-execution_count="33">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>[f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(new_ws) <span class="cf">if</span> f.endswith(<span class="st">'.csv'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we need to tell PEST what are the observed values and their weights, to calc the objective function</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>truth <span class="op">=</span> pd.read_csv(os.path.join(new_ws,<span class="st">'obsvalues.dat'</span>),sep<span class="op">=</span><span class="vs">r'</span><span class="dv">\s</span><span class="op">+</span><span class="vs">'</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>truth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">obsnme</th>
+<th data-quarto-table-cell-role="th">obsval</th>
+<th data-quarto-table-cell-role="th">weight</th>
+<th data-quarto-table-cell-role="th">obgnme</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>w01</td>
+<td>11.85000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>w02</td>
+<td>11.35000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>w03</td>
+<td>11.83000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>w04</td>
+<td>11.43000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>w05</td>
+<td>10.50000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>w06</td>
+<td>10.79000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>w07</td>
+<td>9.13000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>w08</td>
+<td>8.79000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>w09</td>
+<td>8.83000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>w10</td>
+<td>10.64000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>w11</td>
+<td>4.25000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>w12</td>
+<td>4.18000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>w13</td>
+<td>7.56000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>w14</td>
+<td>2.69000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>w15</td>
+<td>4.57000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>w16</td>
+<td>2.73000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>w17</td>
+<td>6.22000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>u01</td>
+<td>12.05000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>u02</td>
+<td>11.63000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>u03</td>
+<td>12.15000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>u04</td>
+<td>11.44000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>u05</td>
+<td>10.86000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>u06</td>
+<td>10.80000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>u07</td>
+<td>9.16000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>u08</td>
+<td>8.82000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>u09</td>
+<td>8.86000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>u10</td>
+<td>10.65000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>u11</td>
+<td>4.26000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>u12</td>
+<td>4.19000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>u13</td>
+<td>7.57000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>u14</td>
+<td>2.70000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>u15</td>
+<td>4.59000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>u16</td>
+<td>2.76000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>u17</td>
+<td>6.23000</td>
+<td>1.000000</td>
+<td>headgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>w02</td>
+<td>0.28000</td>
+<td>0.010000</td>
+<td>headdiffgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>w08</td>
+<td>0.03000</td>
+<td>0.010000</td>
+<td>headdiffgroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>w15</td>
+<td>0.02000</td>
+<td>0.010000</td>
+<td>headdiffgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>chdflow</td>
+<td>33390.41096</td>
+<td>0.000299</td>
+<td>lakegroup</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">38</td>
+<td>pf</td>
+<td>-96402.00000</td>
+<td>0.000104</td>
+<td>rivgroup</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>ds</td>
+<td>-798092.00000</td>
+<td>0.000013</td>
+<td>rivgroup</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="accc23a0-0319-479c-a1b3-69b8278f422a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.339566Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.339396Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.464814Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.464246Z&quot;}}" data-execution_count="34">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>obs[<span class="st">"standard_deviation"</span>] <span class="op">=</span> np.nan</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,stuff <span class="kw">in</span> truth.iterrows():</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"headgroup"</span> <span class="kw">in</span> stuff.obgnme <span class="kw">or</span> <span class="st">"headdiffgroup"</span> <span class="kw">in</span> stuff.obgnme <span class="kw">or</span> <span class="st">"riv"</span> <span class="kw">in</span> stuff.obgnme:</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>        obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'obsval'</span>] <span class="op">=</span> stuff.obsval</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>        obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'weight'</span>] <span class="op">=</span> stuff.weight</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>        obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'obgnme'</span>] <span class="op">=</span> stuff.obgnme</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">"headdiff"</span> <span class="kw">in</span> stuff.obgnme:</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>            obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'standard_deviation'</span>] <span class="op">=</span> np.<span class="bu">abs</span>(stuff.obsval) <span class="op">*</span> <span class="fl">0.15</span> </span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="st">"headgroup"</span> <span class="kw">in</span> stuff.obgnme:</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>            obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'standard_deviation'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>            obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'standard_deviation'</span>] <span class="op">=</span> np.<span class="bu">abs</span>(stuff.obsval) <span class="op">*</span> <span class="fl">0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_3172/2432553825.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '0.01' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.</code></pre>
+</div>
+</div>
+<div id="a74e917d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.466363Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.466197Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.479287Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.478768Z&quot;}}" data-execution_count="35">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>obs.loc[obs.weight<span class="op">&gt;</span><span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">obsnme</th>
+<th data-quarto-table-cell-role="th">obsval</th>
+<th data-quarto-table-cell-role="th">weight</th>
+<th data-quarto-table-cell-role="th">obgnme</th>
+<th data-quarto-table-cell-role="th">i</th>
+<th data-quarto-table-cell-role="th">j</th>
+<th data-quarto-table-cell-role="th">oname</th>
+<th data-quarto-table-cell-role="th">otype</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">usecol</th>
+<th data-quarto-table-cell-role="th">standard_deviation</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">obsnme</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w01_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w01_time:1</td>
+<td>11.85</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w01</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w02_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w02_time:1</td>
+<td>0.28</td>
+<td>0.010000</td>
+<td>headdiffgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w02</td>
+<td>0.0420</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w03_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w03_time:1</td>
+<td>11.83</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w03</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w04_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w04_time:1</td>
+<td>11.43</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w04</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w05_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w05_time:1</td>
+<td>10.50</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w05</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w06_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w06_time:1</td>
+<td>10.79</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w06</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w07_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w07_time:1</td>
+<td>9.13</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w07</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w08_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w08_time:1</td>
+<td>0.03</td>
+<td>0.010000</td>
+<td>headdiffgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w08</td>
+<td>0.0045</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w09_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w09_time:1</td>
+<td>8.83</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w09</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w10_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w10_time:1</td>
+<td>10.64</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w10</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w11_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w11_time:1</td>
+<td>4.25</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w11</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w12_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w12_time:1</td>
+<td>4.18</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w12</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w13_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w13_time:1</td>
+<td>7.56</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w13</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w14_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w14_time:1</td>
+<td>2.69</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w14</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w15_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w15_time:1</td>
+<td>0.02</td>
+<td>0.010000</td>
+<td>headdiffgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w15</td>
+<td>0.0030</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w16_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w16_time:1</td>
+<td>2.73</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w16</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.csv_otype:lst_usecol:w17_time:1</td>
+<td>oname:at.csv_otype:lst_usecol:w17_time:1</td>
+<td>6.22</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>w17</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:riv.csv_otype:lst_usecol:ds_time:1</td>
+<td>oname:riv.csv_otype:lst_usecol:ds_time:1</td>
+<td>-798092.00</td>
+<td>0.000013</td>
+<td>rivgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>riv.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>ds</td>
+<td>79809.2000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:riv.csv_otype:lst_usecol:pf_time:1</td>
+<td>oname:riv.csv_otype:lst_usecol:pf_time:1</td>
+<td>-96402.00</td>
+<td>0.000104</td>
+<td>rivgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>riv.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>pf</td>
+<td>9640.2000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u01_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u01_time:1</td>
+<td>12.05</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u01</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u02_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u02_time:1</td>
+<td>11.63</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u02</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u03_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u03_time:1</td>
+<td>12.15</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u03</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u04_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u04_time:1</td>
+<td>11.44</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u04</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u05_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u05_time:1</td>
+<td>10.86</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u05</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u06_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u06_time:1</td>
+<td>10.80</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u06</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u07_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u07_time:1</td>
+<td>9.16</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u07</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u08_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u08_time:1</td>
+<td>8.82</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u08</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u09_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u09_time:1</td>
+<td>8.86</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u09</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u10_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u10_time:1</td>
+<td>10.65</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u10</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u11_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u11_time:1</td>
+<td>4.26</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u11</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u12_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u12_time:1</td>
+<td>4.19</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u12</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u13_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u13_time:1</td>
+<td>7.57</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u13</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u14_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u14_time:1</td>
+<td>2.70</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u14</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u15_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u15_time:1</td>
+<td>4.59</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u15</td>
+<td>1.0000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u16_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u16_time:1</td>
+<td>2.76</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u16</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oname:at.wt.csv_otype:lst_usecol:u17_time:1</td>
+<td>oname:at.wt.csv_otype:lst_usecol:u17_time:1</td>
+<td>6.23</td>
+<td>1.000000</td>
+<td>headgroup</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>at.wt.csv</td>
+<td>lst</td>
+<td>1</td>
+<td>u17</td>
+<td>1.0000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="26e7906d-1a0c-425c-9127-c9929d93180c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.481072Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.480689Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.491594Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.491080Z&quot;}}" data-execution_count="36">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>obs.loc[obs.weight<span class="op">&gt;</span><span class="dv">0</span>,:].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">obsval</th>
+<th data-quarto-table-cell-role="th">weight</th>
+<th data-quarto-table-cell-role="th">standard_deviation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>36.000000</td>
+<td>36.000000</td>
+<td>36.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>-24840.064444</td>
+<td>0.861948</td>
+<td>2485.568042</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>133527.006534</td>
+<td>0.348628</td>
+<td>13352.401759</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>-798092.000000</td>
+<td>0.000013</td>
+<td>0.003000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>3.825000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>8.195000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>10.792500</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>12.150000</td>
+<td>1.000000</td>
+<td>79809.200000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="fd05867f-9f2a-40f7-98cd-5857eb6b4414" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.493390Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.492958Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:46.518197Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:46.517717Z&quot;}}" data-execution_count="37">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pst.observation_data <span class="op">=</span> obs</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">'at.pst'</span>),version<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>noptmax:0, npar_adj:212, nnz_obs:36</code></pre>
+</div>
+</div>
+<div id="34896a1f-9945-4b7a-b440-41fc31ee7008" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:46.520019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:46.519688Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:47.634299Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:47.633839Z&quot;}}" data-execution_count="38">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'pestpp-ies at.pst'</span>,cwd<span class="op">=</span><span class="st">'template'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>./pestpp-ies at.pst
+
+
+             pestpp-ies: a GLM iterative ensemble smoother
+
+                   by the PEST++ development team
+
+
+version: 5.2.21
+binary compiled on Jul 14 2025 at 14:36:32
+
+started at 07/18/25 11:01:46
+...processing command line: ' ./pestpp-ies at.pst'
+...using serial run manager
+
+using control file: "at.pst"
+in directory: "/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/notebooks/template"
+on host: "pkrvmq0rgcvqdmg"
+
+processing control file at.pst
+
+Note: 'NOPTMAX' == 0, switching to forgiveness mode when checking inputs
+
+noptmax = 0, resetting max_run_fail = 1
+checking model IO files...done
+              starting serial run manager ...
+
+
+  ---  initializing  ---  
+
+  ---  'noptmax'=0, running control file parameter values and quitting  ---  
+...saving control file parameter ensemble to  at.base.par.csv
+...initializing prior parameter covariance matrix
+...parcov loaded  from parameter bounds, using par_sigma_range 4
+...running control file parameter values
+
+
+
+    ---  starting serial run manager for 1 runs ---    
+
+
+07/18/25 11:01:46 processing template files with 1 threads...
+07/18/25 11:01:46 done, took 0.009 seconds
+07/18/25 11:01:46 calling forward run command(s)
+07/18/25 11:01:46 calling forward run command: 'python forward_run.py' 
+...pid: 3377
+                                   MODFLOW 6
+                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL
+                   VERSION 6.3.0 release candidate 02/06/2022
+                               ***DEVELOP MODE***
+
+   MODFLOW 6 compiled Feb 06 2022 02:33:33 with Intel(R) Fortran Intel(R) 64
+   Compiler Classic for applications running on Intel(R) 64, Version 2021.5.0
+                             Build 20211109_000000
+
+This software is preliminary or provisional and is subject to 
+revision. It is being provided to meet the need for timely best 
+science. The software has not received final approval by the U.S. 
+Geological Survey (USGS). No warranty, expressed or implied, is made 
+by the USGS or the U.S. Government as to the functionality of the 
+software and related material nor shall the fact of release 
+constitute any such warranty. The software is provided on the 
+condition that neither the USGS nor the U.S. Government shall be held 
+liable for any damages resulting from the authorized or unauthorized 
+use of the software.
+
+ 
+ Run start date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:47
+ 
+ Writing simulation list file: mfsim.lst
+ Using Simulation name file: mfsim.nam
+ 
+    Solving:  Stress period:     1    Time step:     1
+ 
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:47
+ Elapsed run time:  0.052 Seconds
+ 
+ Normal termination of simulation.
+error removing tmp file:chd.csv
+error removing tmp file:at.csv
+error removing tmp file:riv.csv
+error removing tmp file:at.wt.csv
+error removing tmp file:at.budget.csv
+error removing tmp file:k_aq.ref
+error removing tmp file:k_clay.ref
+starting list mlt 2025-07-18 11:01:47.381825
+number of chunks to process: 1
+process 0  processed  0 process_list_file calls
+finished list mlt 2025-07-18 11:01:47.381921
+starting fac2real 2025-07-18 11:01:47.381932
+number of chunks to process: 1
+process 0  processed  2 fac2real calls
+finished fac2real 2025-07-18 11:01:47.400824
+starting arr mlt 2025-07-18 11:01:47.400830
+number of chunks to process: 1
+process 0  processed  2 process_array_file calls
+finished arr mlt 2025-07-18 11:01:47.405861
+./mf6
+...exit_code: 3377
+...status: 0
+07/18/25 11:01:47 forward run command(s) finished, took 1.04 seconds
+07/18/25 11:01:47 processing instruction files with 1 threads...
+thread 0 processed 7 instruction files
+07/18/25 11:01:47 done, took 0.007 seconds
+
+
+--&gt;07/18/25 11:01:47 run complete, took: 1.058 seconds
+--&gt;1 of 1 complete, 0 failed
+
+
+
+
+
+    ---  serial run manager runs summary:  ---    
+    1 of 1 complete, 0 failed
+    process took : 1.058 seconds
+
+
+
+
+...saving results from control file parameter value run to  at.base.obs.csv
+
+  ---  control file parameter phi report:  ---  
+       phi type           mean            std            min            max
+       measured        390.096              0        390.096        390.096
+         actual        390.096              0        390.096        390.096
+     note: 'measured' phi reported above includes 
+           realizations of measurement noise, 
+           'actual' phi does not.
+  ---  observation group phi summary ---  
+       (computed using 'actual' phi)
+           (sorted by mean phi)
+group           count  nconflict      mean       std       min       max   percent       std
+rivgroup            2          2       371         0       371       371      95.1         0
+headgroup          31         31        19         0        19        19      4.86         0
+headdiffgroup       3          3    0.0207         0    0.0207    0.0207    0.0053         0
+
+saved par and rei files for realization BASE
+
+
+pestpp-ies analysis complete...
+started at 07/18/25 11:01:46
+finished at 07/18/25 11:01:47
+took 0.0166667 minutes</code></pre>
+</div>
+</div>
+<div id="54f395f3-db0f-4627-8b4d-ea61efc5693d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:47.636035Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:47.635741Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:47.663314Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:47.662800Z&quot;}}" data-execution_count="39">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>phi<span class="op">=</span> pst.phi</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>390.09576849555043</code></pre>
+</div>
+</div>
+<div id="52a7b73f-c6c0-47fe-8bb2-3a1d7ffe15e7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:47.665052Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:47.664721Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:47.669591Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:47.669181Z&quot;}}" data-execution_count="40">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>pst.parameter_data.loc[:,<span class="st">"parval1"</span>] <span class="op">=</span> pe.loc[pe.index[<span class="dv">0</span>],pst.par_names].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="5c345493-088a-48d0-add7-b95cf4632c42" class="cell">
+<div id="7e77812a-33a1-4c10-9ef6-f03a7b4fadc4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:47.670999Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:47.670854Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:47.681172Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:47.680771Z&quot;}}" data-execution_count="41">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>obs_csvs <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(new_ws) <span class="cf">if</span> f.endswith(<span class="st">'.csv'</span>)]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> obs_csvs:</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(os.path.join(new_ws,f))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    pf.add_observations(f,index_cols<span class="op">=</span><span class="st">'time'</span>,use_cols<span class="op">=</span>df.columns.tolist()[<span class="dv">1</span>:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>pst.parameter_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">parnme</th>
+<th data-quarto-table-cell-role="th">partrans</th>
+<th data-quarto-table-cell-role="th">parchglim</th>
+<th data-quarto-table-cell-role="th">parval1</th>
+<th data-quarto-table-cell-role="th">parlbnd</th>
+<th data-quarto-table-cell-role="th">parubnd</th>
+<th data-quarto-table-cell-role="th">pargp</th>
+<th data-quarto-table-cell-role="th">scale</th>
+<th data-quarto-table-cell-role="th">offset</th>
+<th data-quarto-table-cell-role="th">dercom</th>
+<th data-quarto-table-cell-role="th">i</th>
+<th data-quarto-table-cell-role="th">inst</th>
+<th data-quarto-table-cell-role="th">j</th>
+<th data-quarto-table-cell-role="th">pname</th>
+<th data-quarto-table-cell-role="th">pstyle</th>
+<th data-quarto-table-cell-role="th">ptype</th>
+<th data-quarto-table-cell-role="th">zone</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">parnme</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">pname:cn-k_aq.ref_inst:0_ptype:cn_pstyle:m</td>
+<td>pname:cn-k_aq.ref_inst:0_ptype:cn_pstyle:m</td>
+<td>log</td>
+<td>factor</td>
+<td>0.910676</td>
+<td>0.05</td>
+<td>20.0</td>
+<td>cn-k_aq.ref</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>cn-k</td>
+<td>m</td>
+<td>cn</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">pname:cn-k_clay.ref_inst:0_ptype:cn_pstyle:m</td>
+<td>pname:cn-k_clay.ref_inst:0_ptype:cn_pstyle:m</td>
+<td>log</td>
+<td>factor</td>
+<td>2.444199</td>
+<td>0.05</td>
+<td>20.0</td>
+<td>cn-k_clay.ref</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>cn-k</td>
+<td>m</td>
+<td>cn</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">pname:pp-k_aq.ref_inst:0_ptype:pp_pstyle:m_i:1_j:1_zone:1</td>
+<td>pname:pp-k_aq.ref_inst:0_ptype:pp_pstyle:m_i:1_j:1_zone:1</td>
+<td>log</td>
+<td>factor</td>
+<td>0.588591</td>
+<td>0.05</td>
+<td>20.0</td>
+<td>pp-k_aq.ref</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>pp-k</td>
+<td>m</td>
+<td>pp</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">pname:pp-k_aq.ref_inst:0_ptype:pp_pstyle:m_i:1_j:4_zone:1</td>
+<td>pname:pp-k_aq.ref_inst:0_ptype:pp_pstyle:m_i:1_j:4_zone:1</td>
+<td>log</td>
+<td>factor</td>
+<td>0.724949</td>
+<td>0.05</td>
+<td>20.0</td>
+<td>pp-k_aq.ref</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>pp-k</td>
+<td>m</td>
+<td>pp</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">pname:pp-k_aq.ref_inst:0_ptype:pp_pstyle:m_i:1_j:7_zone:1</td>
+<td>pname:pp-k_aq.ref_inst:0_ptype:pp_pstyle:m_i:1_j:7_zone:1</td>
+<td>log</td>
+<td>factor</td>
+<td>0.621493</td>
+<td>0.05</td>
+<td>20.0</td>
+<td>pp-k_aq.ref</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>7</td>
+<td>pp-k</td>
+<td>m</td>
+<td>pp</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="4baab63b-7274-49a1-89e7-f9ebfc253096" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:47.682724Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:47.682559Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:48.841004Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:48.840530Z&quot;}}" data-execution_count="42">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">"test.pst"</span>),version<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">"pestpp-ies test.pst"</span>,cwd<span class="op">=</span>pf.new_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>noptmax:0, npar_adj:212, nnz_obs:36
+./pestpp-ies test.pst
+
+
+             pestpp-ies: a GLM iterative ensemble smoother
+
+                   by the PEST++ development team
+
+
+version: 5.2.21
+binary compiled on Jul 14 2025 at 14:36:32
+
+started at 07/18/25 11:01:47
+...processing command line: ' ./pestpp-ies test.pst'
+...using serial run manager
+
+using control file: "test.pst"
+in directory: "/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/notebooks/template"
+on host: "pkrvmq0rgcvqdmg"
+
+processing control file test.pst
+
+Note: 'NOPTMAX' == 0, switching to forgiveness mode when checking inputs
+
+noptmax = 0, resetting max_run_fail = 1
+checking model IO files...done
+              starting serial run manager ...
+
+
+  ---  initializing  ---  
+
+  ---  'noptmax'=0, running control file parameter values and quitting  ---  
+...saving control file parameter ensemble to  test.base.par.csv
+...initializing prior parameter covariance matrix
+...parcov loaded  from parameter bounds, using par_sigma_range 4
+...running control file parameter values
+
+
+
+    ---  starting serial run manager for 1 runs ---    
+
+
+07/18/25 11:01:47 processing template files with 1 threads...
+07/18/25 11:01:47 done, took 0.017 seconds
+07/18/25 11:01:47 calling forward run command(s)
+07/18/25 11:01:47 calling forward run command: 'python forward_run.py' 
+...pid: 3398
+                                   MODFLOW 6
+                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL
+                   VERSION 6.3.0 release candidate 02/06/2022
+                               ***DEVELOP MODE***
+
+   MODFLOW 6 compiled Feb 06 2022 02:33:33 with Intel(R) Fortran Intel(R) 64
+   Compiler Classic for applications running on Intel(R) 64, Version 2021.5.0
+                             Build 20211109_000000
+
+This software is preliminary or provisional and is subject to 
+revision. It is being provided to meet the need for timely best 
+science. The software has not received final approval by the U.S. 
+Geological Survey (USGS). No warranty, expressed or implied, is made 
+by the USGS or the U.S. Government as to the functionality of the 
+software and related material nor shall the fact of release 
+constitute any such warranty. The software is provided on the 
+condition that neither the USGS nor the U.S. Government shall be held 
+liable for any damages resulting from the authorized or unauthorized 
+use of the software.
+
+ 
+ Run start date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:48
+ 
+ Writing simulation list file: mfsim.lst
+ Using Simulation name file: mfsim.nam
+ 
+    Solving:  Stress period:     1    Time step:     1
+ 
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:48
+ Elapsed run time:  0.051 Seconds
+ 
+ Normal termination of simulation.
+error removing tmp file:chd.csv
+error removing tmp file:at.csv
+error removing tmp file:riv.csv
+error removing tmp file:at.wt.csv
+error removing tmp file:at.budget.csv
+error removing tmp file:k_aq.ref
+error removing tmp file:k_clay.ref
+starting list mlt 2025-07-18 11:01:48.584970
+number of chunks to process: 1
+process 0  processed  0 process_list_file calls
+finished list mlt 2025-07-18 11:01:48.585049
+starting fac2real 2025-07-18 11:01:48.585058
+number of chunks to process: 1
+process 0  processed  2 fac2real calls
+finished fac2real 2025-07-18 11:01:48.600895
+starting arr mlt 2025-07-18 11:01:48.600905
+number of chunks to process: 1
+process 0  processed  2 process_array_file calls
+finished arr mlt 2025-07-18 11:01:48.606456
+./mf6
+...exit_code: 3398
+...status: 0
+07/18/25 11:01:48 forward run command(s) finished, took 1.056 seconds
+07/18/25 11:01:48 processing instruction files with 1 threads...
+thread 0 processed 7 instruction files
+07/18/25 11:01:48 done, took 0.005 seconds
+
+
+--&gt;07/18/25 11:01:48 run complete, took: 1.08 seconds
+--&gt;1 of 1 complete, 0 failed
+
+
+
+
+
+    ---  serial run manager runs summary:  ---    
+    1 of 1 complete, 0 failed
+    process took : 1.081 seconds
+
+
+
+
+...saving results from control file parameter value run to  test.base.obs.csv
+
+  ---  control file parameter phi report:  ---  
+       phi type           mean            std            min            max
+       measured        841.448              0        841.448        841.448
+         actual        841.448              0        841.448        841.448
+     note: 'measured' phi reported above includes 
+           realizations of measurement noise, 
+           'actual' phi does not.
+  ---  observation group phi summary ---  
+       (computed using 'actual' phi)
+           (sorted by mean phi)
+group           count  nconflict      mean       std       min       max   percent       std
+rivgroup            2          2       740         0       740       740      87.9         0
+headgroup          31         31       102         0       102       102      12.1         0
+headdiffgroup       3          3    0.0184         0    0.0184    0.0184   0.00219         0
+
+saved par and rei files for realization BASE
+
+
+pestpp-ies analysis complete...
+started at 07/18/25 11:01:47
+finished at 07/18/25 11:01:48
+took 0.0166667 minutes</code></pre>
+</div>
+</div>
+<div id="60d0bc79-16c6-4220-a257-1eed63ee488d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:48.842572Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:48.842401Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:48.873627Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:48.873089Z&quot;}}" data-execution_count="43">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>pst.set_res(os.path.join(pf.new_d,<span class="st">"test.base.rei"</span>))</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>pst.phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>841.4483254589984</code></pre>
+</div>
+</div>
+<div id="c2649910-e71f-473a-927d-928e0ea76091" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:48.875462Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:48.875035Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:48.880142Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:48.879647Z&quot;}}" data-execution_count="44">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>kobs <span class="op">=</span> obs.loc[obs.obsnme.<span class="bu">str</span>.contains(<span class="st">"k_aq"</span>),:].copy()</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>kobs[<span class="st">'i'</span>] <span class="op">=</span> kobs.i.astype(<span class="bu">int</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>kobs[<span class="st">'j'</span>] <span class="op">=</span> kobs.j.astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="b433ee2a-bfeb-40b3-93c6-618c5ce8c0f4" class="cell">
+<div id="7b961398-20fc-4da3-b523-9826c7258aa5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:48.881907Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:48.881580Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:49.016448Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:49.015932Z&quot;}}" data-execution_count="45">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> k_pars:</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    pf.add_observations(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((kobs.i.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>,kobs.j.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>arr[kobs.i,kobs.j] <span class="op">=</span> np.log10(pst.res.loc[kobs.obsnme,<span class="st">"modelled"</span>].values)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> plt.imshow(arr)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>plt.colorbar(cb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple_pstfrom_files/figure-html/cell-46-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div id="4caa4783-6f37-49c7-a5d8-b19289062a25" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pf.mod_sys_cmds.append(<span class="st">'mf6'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div id="466eac0f-9fe4-4fe1-8ede-51503e5bf279" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>?pf.draw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div id="8f0aa111-aa55-4ce2-ae66-b2a1bcc70cfa" class="cell">
+<div id="728afa7e-1ffb-498e-ab42-20c11c2fe1cf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:49.018173Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:49.017853Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:51.110780Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:51.110203Z&quot;}}" data-execution_count="46">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pst <span class="op">=</span> pf.build_pst(filename<span class="op">=</span>os.path.join(pf.new_d,<span class="st">'at.pst'</span>),version<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>pst <span class="op">=</span> pyemu.Pst(os.path.join(pf.new_d,<span class="st">"at.pst"</span>))</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>pst.control_data.noptmax <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">"at.pst"</span>),version<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">"pestpp-ies at.pst"</span>,cwd<span class="op">=</span>pf.new_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>noptmax:-2, npar_adj:212, nnz_obs:36
+./pestpp-ies at.pst
+
+
+             pestpp-ies: a GLM iterative ensemble smoother
+
+                   by the PEST++ development team
+
+
+version: 5.2.21
+binary compiled on Jul 14 2025 at 14:36:32
+
+started at 07/18/25 11:01:49
+...processing command line: ' ./pestpp-ies at.pst'
+...using serial run manager
+
+using control file: "at.pst"
+in directory: "/home/runner/work/PESTPP_Madison25/PESTPP_Madison25/notebooks/template"
+on host: "pkrvmq0rgcvqdmg"
+
+processing control file at.pst
+checking model IO files...done
+              starting serial run manager ...
+
+
+  ---  initializing  ---  
+...using glm algorithm
+...using REDSVD for truncated svd solve
+...maxsing: 10000000
+...eigthresh:  1e-06
+...initializing localizer
+...not using localization
+...using lambda multipliers: 0.1 , 1 , 10 , 
+...using lambda scaling factors: 0.75 , 1 , 1.1 , 
+...acceptable phi factor:  1.05
+...lambda increase factor:  10
+...lambda decrease factor:  0.75
+...max run fail:  1
+...initializing prior parameter covariance matrix
+...parcov loaded  from parameter bounds, using par_sigma_range 4
+...initializing observation noise covariance matrix
+...obscov loaded  from observation weights
+...using reg_factor:  0
+...loading par ensemble from csv file prior.csv
+...not using prior parameter covariance matrix scaling
+...drawing observation noise realizations:  300
+observations not grouped by observations groups, reordering obs ensemble
+...setting weights ensemble from control file weights
+...saved weight ensemble to  at.weights.csv
+...adding 'base' parameter values to ensemble
+...adding 'base' observation values to ensemble
+...adding 'base' weight values to weight ensemble
+...saved initial parameter ensemble to  at.0.par.csv
+...saved obs+noise observation ensemble (obsval + noise realizations) to  at.obs+noise.csv
+...using subset in lambda testing, percentage of realizations used in subset testing:  10
+...subset how:  RANDOM
+
+  ---  'noptmax'=-2, running mean parameter ensemble values and quitting  ---  
+...calculating mean parameter values
+...saving mean parameter values to  at.mean.par.csv
+...running mean parameter values
+
+
+
+    ---  starting serial run manager for 1 runs ---    
+
+
+07/18/25 11:01:50 processing template files with 1 threads...
+07/18/25 11:01:50 done, took 0.009 seconds
+07/18/25 11:01:50 calling forward run command(s)
+07/18/25 11:01:50 calling forward run command: 'python forward_run.py' 
+...pid: 3419
+                                   MODFLOW 6
+                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL
+                   VERSION 6.3.0 release candidate 02/06/2022
+                               ***DEVELOP MODE***
+
+   MODFLOW 6 compiled Feb 06 2022 02:33:33 with Intel(R) Fortran Intel(R) 64
+   Compiler Classic for applications running on Intel(R) 64, Version 2021.5.0
+                             Build 20211109_000000
+
+This software is preliminary or provisional and is subject to 
+revision. It is being provided to meet the need for timely best 
+science. The software has not received final approval by the U.S. 
+Geological Survey (USGS). No warranty, expressed or implied, is made 
+by the USGS or the U.S. Government as to the functionality of the 
+software and related material nor shall the fact of release 
+constitute any such warranty. The software is provided on the 
+condition that neither the USGS nor the U.S. Government shall be held 
+liable for any damages resulting from the authorized or unauthorized 
+use of the software.
+
+ 
+ Run start date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:50
+ 
+ Writing simulation list file: mfsim.lst
+ Using Simulation name file: mfsim.nam
+ 
+    Solving:  Stress period:     1    Time step:     1
+ 
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2025/07/18 11:01:50
+ Elapsed run time:  0.052 Seconds
+ 
+ Normal termination of simulation.
+error removing tmp file:chd.csv
+error removing tmp file:at.csv
+error removing tmp file:riv.csv
+error removing tmp file:at.wt.csv
+error removing tmp file:at.budget.csv
+error removing tmp file:k_aq.ref
+error removing tmp file:k_clay.ref
+starting list mlt 2025-07-18 11:01:50.846781
+number of chunks to process: 1
+process 0  processed  0 process_list_file calls
+finished list mlt 2025-07-18 11:01:50.846895
+starting fac2real 2025-07-18 11:01:50.846908
+number of chunks to process: 1
+process 0  processed  2 fac2real calls
+finished fac2real 2025-07-18 11:01:50.871153
+starting arr mlt 2025-07-18 11:01:50.871162
+number of chunks to process: 1
+process 0  processed  2 process_array_file calls
+finished arr mlt 2025-07-18 11:01:50.876830
+./mf6
+...exit_code: 3419
+...status: 0
+07/18/25 11:01:51 forward run command(s) finished, took 1.066 seconds
+07/18/25 11:01:51 processing instruction files with 1 threads...
+thread 0 processed 7 instruction files
+07/18/25 11:01:51 done, took 0.005 seconds
+
+
+--&gt;07/18/25 11:01:51 run complete, took: 1.082 seconds
+--&gt;1 of 1 complete, 0 failed
+
+
+
+
+
+    ---  serial run manager runs summary:  ---    
+    1 of 1 complete, 0 failed
+    process took : 1.082 seconds
+
+
+
+
+...saving results from mean parameter value run to  at.mean.obs.csv
+
+  ---  realization mean phi report:  ---  
+       phi type           mean            std            min            max
+       measured        457.745              0        457.745        457.745
+         actual        457.745              0        457.745        457.745
+     note: 'measured' phi reported above includes 
+           realizations of measurement noise, 
+           'actual' phi does not.
+  ---  observation group phi summary ---  
+       (computed using 'actual' phi)
+           (sorted by mean phi)
+group           count  nconflict      mean       std       min       max   percent       std
+rivgroup            2          2       432         0       432       432      94.4         0
+headgroup          31         31      25.4         0      25.4      25.4      5.55         0
+headdiffgroup       3          3    0.0204         0    0.0204    0.0204   0.00446         0
+
+saved par and rei files for realization mean
+
+
+pestpp-ies analysis complete...
+started at 07/18/25 11:01:49
+finished at 07/18/25 11:01:51
+took 0.0333333 minutes</code></pre>
 </div>
-<div id="367606d0" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in the recharge parameter</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> pst.add_parameters(<span class="st">'./simple_ies/at.rch.tpl'</span>, pst_path<span class="op">=</span><span class="st">'.'</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> pst.parameter_data</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'parval1'</span>] <span class="op">=</span> r.loc[<span class="st">'rch'</span>].parval1</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'parlbnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rch'</span>].parval1 <span class="op">*</span> <span class="fl">.8</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'parubnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rch'</span>].parval1 <span class="op">*</span> <span class="fl">1.2</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>,<span class="st">'pargp'</span>] <span class="op">=</span> <span class="st">'recharge'</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rch'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div id="6e19ead8" class="cell">
+<div id="f19f08c6-9a9c-480b-911d-7507bdf3729f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:51.112478Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:51.112309Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:51.144341Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:51.143908Z&quot;}}" data-execution_count="47">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rb <span class="op">=</span> pst.add_parameters(<span class="st">'./simple_ies/riv.ref.tpl'</span>, pst_path<span class="op">=</span><span class="st">'.'</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>rb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>pst.set_res(os.path.join(pf.new_d,<span class="st">"at.base.rei"</span>))</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>pst.phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>390.09576849555043</code></pre>
 </div>
-<div id="8cc18361" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and the riverbed conductance</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> pst.parameter_data</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'parval1'</span>] <span class="op">=</span> rb.loc[<span class="st">'rv1'</span>].parval1</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'parlbnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rv1'</span>].parval1 <span class="op">*</span> <span class="fl">.1</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'parubnd'</span>] <span class="op">=</span> pars.loc[<span class="st">'rv1'</span>].parval1 <span class="op">*</span> <span class="fl">10.0</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>,<span class="st">'pargp'</span>] <span class="op">=</span> <span class="st">'riverbed'</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>pars.loc[<span class="st">'rv1'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div id="7518b65b" class="cell">
+<div id="3a4e3eab-fcbd-4dbc-be7f-9d3dff6df7a6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:01:51.145897Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:01:51.145730Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:01:51.270390Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:01:51.269951Z&quot;}}" data-execution_count="48">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">'at.pst'</span>),version<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((kobs.i.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>,kobs.j.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>arr[kobs.i,kobs.j] <span class="op">=</span> np.log10(pst.res.loc[kobs.obsnme,<span class="st">"modelled"</span>].values)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> plt.imshow(arr)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>plt.colorbar(cb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple_pstfrom_files/figure-html/cell-49-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div id="a4d0f7ec-118c-4d45-b5fc-9ebfe9722818" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#draw prior ensemble that accounts for PP spatial correlation (this is for later for when we want to use iES)</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>pe <span class="op">=</span> pf.draw(num_reals<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>pe.enforce()</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>pe.to_csv(os.path.join(pf.new_d,<span class="st">'prior.csv'</span>))</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div id="87288420-69e9-4b1c-9e34-0347d1bce101" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pst <span class="op">=</span> pyemu.Pst(filename<span class="op">=</span>os.path.join(pf.new_d,<span class="st">'at.pst'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="f74eaf99" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pst.pestpp_options[<span class="st">"ies_par_en"</span>] <span class="op">=</span> <span class="st">"prior.csv"</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>obs <span class="op">=</span> pst.observation_data</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="9337e772-a687-409b-b47a-06ec6f460e17" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'pestpp-ies at.pst'</span>,cwd<span class="op">=</span><span class="st">'template'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="b4e301be-0abd-41f3-a20a-d8ea8f5612aa" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pst.set_res(os.path.join(pf.new_d,<span class="st">"at.base.rei"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="6bec3dba-0c4b-4ef1-ae80-40b74def7b7e" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pst.phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="ef5c5139-8f25-4a28-92fb-27c9cecb860e" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> pst.phi <span class="op">&lt;</span> <span class="fl">1e-6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="8304bd18-4acc-4208-897e-989509afff75" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#zero everything out for starters</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>obs.weight <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="13288f1e-589c-44d9-b50e-eddac0a8e20a" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we need to tell PEST what are the observed values and their weights, to calc the objective function</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>truth <span class="op">=</span> pd.read_csv(os.path.join(new_ws,<span class="st">'obsvalues.dat'</span>),sep<span class="op">=</span><span class="vs">r'</span><span class="dv">\s</span><span class="op">+</span><span class="vs">'</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>truth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="accc23a0-0319-479c-a1b3-69b8278f422a" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>obs[<span class="st">"standard_deviation"</span>] <span class="op">=</span> np.nan</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,stuff <span class="kw">in</span> truth.iterrows():</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"headgroup"</span> <span class="kw">in</span> stuff.obgnme <span class="kw">or</span> <span class="st">"headdiffgroup"</span> <span class="kw">in</span> stuff.obgnme <span class="kw">or</span> <span class="st">"riv"</span> <span class="kw">in</span> stuff.obgnme:</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'obsval'</span>] <span class="op">=</span> stuff.obsval</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'weight'</span>] <span class="op">=</span> stuff.weight</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'obgnme'</span>] <span class="op">=</span> stuff.obgnme</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">"headdiff"</span> <span class="kw">in</span> stuff.obgnme:</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>            obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'standard_deviation'</span>] <span class="op">=</span> np.<span class="bu">abs</span>(stuff.obsval) <span class="op">*</span> <span class="fl">0.15</span> </span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="st">"headgroup"</span> <span class="kw">in</span> stuff.obgnme:</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>            obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'standard_deviation'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>            obs.loc[obs.obsnme.<span class="bu">str</span>.contains(stuff.obsnme),<span class="st">'standard_deviation'</span>] <span class="op">=</span> np.<span class="bu">abs</span>(stuff.obsval) <span class="op">*</span> <span class="fl">0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="a74e917d" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>obs.loc[obs.weight<span class="op">&gt;</span><span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="26e7906d-1a0c-425c-9127-c9929d93180c" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>obs.loc[obs.weight<span class="op">&gt;</span><span class="dv">0</span>,:].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="fd05867f-9f2a-40f7-98cd-5857eb6b4414" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pst.observation_data <span class="op">=</span> obs</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">'at.pst'</span>),version<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="34896a1f-9945-4b7a-b440-41fc31ee7008" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">'pestpp-ies at.pst'</span>,cwd<span class="op">=</span><span class="st">'template'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="54f395f3-db0f-4627-8b4d-ea61efc5693d" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>phi<span class="op">=</span> pst.phi</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="52a7b73f-c6c0-47fe-8bb2-3a1d7ffe15e7" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pst.parameter_data.loc[:,<span class="st">"parval1"</span>] <span class="op">=</span> pe.loc[pe.index[<span class="dv">0</span>],pst.par_names].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="7e77812a-33a1-4c10-9ef6-f03a7b4fadc4" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pst.parameter_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="4baab63b-7274-49a1-89e7-f9ebfc253096" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">"test.pst"</span>),version<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">"pestpp-ies test.pst"</span>,cwd<span class="op">=</span>pf.new_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="60d0bc79-16c6-4220-a257-1eed63ee488d" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>pst.set_res(os.path.join(pf.new_d,<span class="st">"test.base.rei"</span>))</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>pst.phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="c2649910-e71f-473a-927d-928e0ea76091" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>kobs <span class="op">=</span> obs.loc[obs.obsnme.<span class="bu">str</span>.contains(<span class="st">"k_aq"</span>),:].copy()</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>kobs[<span class="st">'i'</span>] <span class="op">=</span> kobs.i.astype(<span class="bu">int</span>)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>kobs[<span class="st">'j'</span>] <span class="op">=</span> kobs.j.astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="7b961398-20fc-4da3-b523-9826c7258aa5" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((kobs.i.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>,kobs.j.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>))</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>arr[kobs.i,kobs.j] <span class="op">=</span> np.log10(pst.res.loc[kobs.obsnme,<span class="st">"modelled"</span>].values)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> plt.imshow(arr)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>plt.colorbar(cb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="728afa7e-1ffb-498e-ab42-20c11c2fe1cf" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pst <span class="op">=</span> pyemu.Pst(os.path.join(pf.new_d,<span class="st">"at.pst"</span>))</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>pst.control_data.noptmax <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>pst.write(os.path.join(pf.new_d,<span class="st">"at.pst"</span>),version<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>pyemu.os_utils.run(<span class="st">"pestpp-ies at.pst"</span>,cwd<span class="op">=</span>pf.new_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="f19f08c6-9a9c-480b-911d-7507bdf3729f" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pst.set_res(os.path.join(pf.new_d,<span class="st">"at.base.rei"</span>))</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>pst.phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="3a4e3eab-fcbd-4dbc-be7f-9d3dff6df7a6" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((kobs.i.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>,kobs.j.<span class="bu">max</span>()<span class="op">+</span><span class="dv">1</span>))</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>arr[kobs.i,kobs.j] <span class="op">=</span> np.log10(pst.res.loc[kobs.obsnme,<span class="st">"modelled"</span>].values)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> plt.imshow(arr)</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>plt.colorbar(cb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 
 

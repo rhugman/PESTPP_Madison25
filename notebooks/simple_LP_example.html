@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-025db3b089a7e65f2676a8a92be6aa8b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-16ed6b721fb3ed5dec6e8ac5c8ff3b6f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>In this notebook we are going to dig into the basics of optimization underpinning PESTPP-OPT (and to an extent, PESTPP-MOU) through a very simple linear programming example, reproduced from https://realpython.com/linear-programming-python/</p>
-<div id="22e03317-7871-4b2e-8c92-92be03516f94" class="cell">
+<div id="22e03317-7871-4b2e-8c92-92be03516f94" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:25.768629Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:25.768456Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.228238Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.227696Z&quot;}}" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Conveniently, we can visualize the five constraints on a 2-d plot, where the white space is the feasible region. Woops, that’s another key optimization term! - <strong>feasible</strong>:a set of decision variables that satisfies all constraints</p>
-<div id="37bf08dd-2d13-43d4-83f0-3cc0504b112f" class="cell">
+<div id="37bf08dd-2d13-43d4-83f0-3cc0504b112f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.230299Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.230078Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.327177Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.326687Z&quot;}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
@@ -280,124 +280,157 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">3.5</span>,<span class="dv">3</span>,<span class="st">'feasible region'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>Text(3.5, 3, 'feasible region')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple_LP_example_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <section id="now-lets-set-up-and-solve-the-optimization-problem." class="level2">
 <h2 class="anchored" data-anchor-id="now-lets-set-up-and-solve-the-optimization-problem.">Now, let’s set up and solve the optimization problem.</h2>
-<div id="9d9a2926-ccad-4693-9ba9-bd81ca8dff9d" class="cell">
+<div id="9d9a2926-ccad-4693-9ba9-bd81ca8dff9d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.328819Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.328656Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.331746Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.331311Z&quot;}}" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#wait why does z= x+2y have coefficients of -1 and -2 instead of 1 and 2? </span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#because scipy linprog assumes minimization. to "maximize," we flip them to negative</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>lhs_ineq <span class="op">=</span> [[ <span class="dv">2</span>,  <span class="dv">1</span>],  <span class="co"># Red constraint left side</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             [<span class="op">-</span><span class="dv">4</span>,  <span class="dv">5</span>],  <span class="co"># Blue constraint left side</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>             [ <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]]  <span class="co"># Yellow constraint left side </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#(again, note that coefficient signs are flipped because it's a greater than constraint rather than less than)</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>rhs_ineq <span class="op">=</span> [<span class="dv">20</span>,  <span class="co"># Red constraint right side</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            <span class="dv">10</span>,  <span class="co"># Blue constraint right side</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span><span class="dv">2</span>]  <span class="co"># Yellow constraint right side</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#wait why does z= x+2y have coefficients of -1 and -2 instead of 1 and 2? </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#because scipy linprog assumes minimization. to "maximize," we flip them to negative</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>lhs_ineq <span class="op">=</span> [[ <span class="dv">2</span>,  <span class="dv">1</span>],  <span class="co"># Red constraint left side</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>             [<span class="op">-</span><span class="dv">4</span>,  <span class="dv">5</span>],  <span class="co"># Blue constraint left side</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>             [ <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]]  <span class="co"># Yellow constraint left side </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#(again, note that coefficient signs are flipped because it's a greater than constraint rather than less than)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>rhs_ineq <span class="op">=</span> [<span class="dv">20</span>,  <span class="co"># Red constraint right side</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="dv">10</span>,  <span class="co"># Blue constraint right side</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span><span class="dv">2</span>]  <span class="co"># Yellow constraint right side</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="07fb4d5c-3862-4c95-b606-d2688336f521" class="cell">
+<div id="07fb4d5c-3862-4c95-b606-d2688336f521" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.333216Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.333059Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.335638Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.335218Z&quot;}}" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> [(<span class="dv">0</span>, <span class="bu">float</span>(<span class="st">"inf"</span>)),  <span class="co"># Bounds of x</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">0</span>, <span class="bu">float</span>(<span class="st">"inf"</span>))]  <span class="co"># Bounds of y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> [(<span class="dv">0</span>, <span class="bu">float</span>(<span class="st">"inf"</span>)),  <span class="co"># Bounds of x</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">0</span>, <span class="bu">float</span>(<span class="st">"inf"</span>))]  <span class="co"># Bounds of y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="b9f85bc6-e3ab-42ee-af10-2a738f7cfd65" class="cell">
+<div id="b9f85bc6-e3ab-42ee-af10-2a738f7cfd65" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.337104Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.336950Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.342217Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.341807Z&quot;}}" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> linprog(c<span class="op">=</span>obj, A_ub<span class="op">=</span>lhs_ineq, b_ub<span class="op">=</span>rhs_ineq,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>               bounds<span class="op">=</span>bnd, method<span class="op">=</span><span class="st">"simplex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> linprog(c<span class="op">=</span>obj, A_ub<span class="op">=</span>lhs_ineq, b_ub<span class="op">=</span>rhs_ineq,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>               bounds<span class="op">=</span>bnd, method<span class="op">=</span><span class="st">"simplex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>We can print the objective function value.</p>
-<div id="9ea58f74-fd83-4723-9031-dc8c45f26261" class="cell">
+<div id="9ea58f74-fd83-4723-9031-dc8c45f26261" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.343836Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.343586Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.347108Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.346622Z&quot;}}" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>opt.fun </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>opt.fun </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>-20.714285714285715</code></pre>
+</div>
 </div>
 <p>And check to see if an optimal solution (value of x and y) was found</p>
-<div id="34b68641-3fb1-4738-88cf-10877379e4a5" class="cell">
+<div id="34b68641-3fb1-4738-88cf-10877379e4a5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.348738Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.348417Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.351714Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.351176Z&quot;}}" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>opt.success </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>opt.success </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>True</code></pre>
+</div>
 </div>
 <p>Let’s print out the decision variable values for that optimal solution</p>
-<div id="49838fb5-caa7-4ddc-8c0d-d66b4d7014ee" class="cell">
+<div id="49838fb5-caa7-4ddc-8c0d-d66b4d7014ee" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.353371Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.353121Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.356676Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.356170Z&quot;}}" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>opt.x </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>opt.x </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>array([6.42857143, 7.14285714])</code></pre>
+</div>
 </div>
 <p>And we can visualize those decision variable values on our plot.</p>
-<div id="2b9eb306-c08b-4276-8661-f0d2a2128091" class="cell">
+<div id="2b9eb306-c08b-4276-8661-f0d2a2128091" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.358239Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.357934Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.454784Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.454243Z&quot;}}" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">20</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="dv">10</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>x)<span class="op">/</span><span class="dv">5</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">+</span> x)<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, color<span class="op">=</span><span class="st">'yellow'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(opt.x[<span class="dv">0</span>],opt.x[<span class="dv">1</span>],c<span class="op">=</span><span class="st">'black'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">20</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="dv">10</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>x)<span class="op">/</span><span class="dv">5</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">+</span> x)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, color<span class="op">=</span><span class="st">'yellow'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(opt.x[<span class="dv">0</span>],opt.x[<span class="dv">1</span>],c<span class="op">=</span><span class="st">'black'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple_LP_example_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Notice that the solution is in the feasible region but right at the boundary of two of the constraints. This is where optimization departs from parameter estimation, as it is normal and even optimal for parameters to hit their bounds.</p>
 </section>
 <section id="what-if-we-further-bounded-the-decision-variables-x-and-y" class="level2">
 <h2 class="anchored" data-anchor-id="what-if-we-further-bounded-the-decision-variables-x-and-y">What if we further bounded the decision variables x and y?</h2>
-<div id="17aba069-a9b5-45aa-beb8-1b4a976b2109" class="cell">
+<div id="17aba069-a9b5-45aa-beb8-1b4a976b2109" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.456596Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.456257Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.458967Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.458474Z&quot;}}" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> [(<span class="dv">0</span>, <span class="dv">3</span>),  <span class="co"># Bounds of decision variable x</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">0</span>, <span class="dv">4</span>)]  <span class="co"># Bounds of decision variable y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> [(<span class="dv">0</span>, <span class="dv">3</span>),  <span class="co"># Bounds of decision variable x</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">0</span>, <span class="dv">4</span>)]  <span class="co"># Bounds of decision variable y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="e929da44-57bd-4430-8757-a4d0ca1c4de9" class="cell">
+<div id="e929da44-57bd-4430-8757-a4d0ca1c4de9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.460509Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.460250Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.467113Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.466586Z&quot;}}" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> linprog(c<span class="op">=</span>obj, A_ub<span class="op">=</span>lhs_ineq, b_ub<span class="op">=</span>rhs_ineq,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>               bounds<span class="op">=</span>bnd, method<span class="op">=</span><span class="st">"simplex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> linprog(c<span class="op">=</span>obj, A_ub<span class="op">=</span>lhs_ineq, b_ub<span class="op">=</span>rhs_ineq,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>               bounds<span class="op">=</span>bnd, method<span class="op">=</span><span class="st">"simplex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="06d00c7d-1a1f-4bb1-98d5-6c66b0c353fd" class="cell">
+<div id="06d00c7d-1a1f-4bb1-98d5-6c66b0c353fd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-18T11:13:26.468646Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-18T11:13:26.468483Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-18T11:13:26.562134Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-18T11:13:26.561715Z&quot;}}" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">20</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="dv">10</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>x)<span class="op">/</span><span class="dv">5</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">+</span> x)<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, color<span class="op">=</span><span class="st">'yellow'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.axvline(bnd[<span class="dv">0</span>][<span class="dv">1</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.axhline(bnd[<span class="dv">1</span>][<span class="dv">1</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(opt.x[<span class="dv">0</span>],opt.x[<span class="dv">1</span>],c<span class="op">=</span><span class="st">'black'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">20</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="dv">10</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>x)<span class="op">/</span><span class="dv">5</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y,<span class="dv">1000</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">+</span> x)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, color<span class="op">=</span><span class="st">'yellow'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>plt.axvline(bnd[<span class="dv">0</span>][<span class="dv">1</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>plt.axhline(bnd[<span class="dv">1</span>][<span class="dv">1</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(opt.x[<span class="dv">0</span>],opt.x[<span class="dv">1</span>],c<span class="op">=</span><span class="st">'black'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple_LP_example_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Now, the optimal solution is entirely constrained by the bounded values of the decision variables. Thus, in linear optimization, the constraints are key and decision variable bounds should be carefully designed. For example, for maximizing pumping subject to the constraint of not capturing too much streamflow, we still want to set bounds on our pumping wells based on actual pump capacity and yield.</p>
 
