@@ -23,7 +23,7 @@ dependencies:
   - ipykernel
   - quarto
   - pip:
-       - -e flopy
-       - -e pyemu
+       - -e ./dependencies/flopy
+       - -e ./dependencies/pyemu
 
 
