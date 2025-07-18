@@ -30,24 +30,19 @@ jobs:
       - name: Setup Python kernel with environment variables
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          # Install kernel for user (this worked in the previous attempt)
+          # Install kernel for user
           micromamba run -n madison python -m ipykernel install --user --name python3 --display-name "Python 3"
           # Verify kernel installation
           micromamba run -n madison jupyter kernelspec list
-          echo "Jupyter data dir:"
-          micromamba run -n madison python -c "import jupyter_core; print(jupyter_core.paths.jupyter_data_dir())"
           echo "Available kernels in user directory:"
           ls -la $HOME/.local/share/jupyter/kernels/ || echo "No user kernels directory"
 
       - name: Render site with environment
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          # Set Jupyter paths to find the user-installed kernel
-          export JUPYTER_PATH="$HOME/.local/share/jupyter"
+          # Set Jupyter paths to include both user and environment kernel locations
+          export JUPYTER_PATH="$HOME/.local/share/jupyter:/home/runner/micromamba/envs/madison/share/jupyter"
           export JUPYTER_CONFIG_PATH="$HOME/.local/share/jupyter"
-          # Verify Quarto can see the kernel
-          echo "Quarto kernel check:"
-          micromamba run -n madison quarto check jupyter
           # Render with debug
           micromamba run -n madison quarto render --execute-debug
         env:
