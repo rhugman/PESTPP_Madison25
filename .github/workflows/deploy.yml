@@ -26,7 +26,14 @@ jobs:
       - name: Render site in environment
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          micromamba run -n madison quarto render
+          # Install kernel in the environment
+          micromamba run -n madison python -m ipykernel install --name python3 --display-name "Python 3"
+          # Execute notebooks using Jupyter directly (this should work since Jupyter is in the same env)
+          micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_pstfrom.ipynb
+          micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_ies.ipynb  
+          micromamba run -n madison jupyter nbconvert --to notebook --execute --inplace notebooks/simple_LP_example.ipynb
+          # Now render with Quarto (execution disabled since notebooks are pre-executed)
+          micromamba run -n madison quarto render --execute=false
         
       - name: Add .nojekyll
         run: |
