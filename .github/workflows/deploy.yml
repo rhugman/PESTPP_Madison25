@@ -22,22 +22,22 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Make executables accessible
+      - name: Make executables accessible and setup environment
         run: |
           chmod +x bin/linux/*
+          echo "PATH=$PWD/bin/linux:$PATH" >> $GITHUB_ENV
 
-      - name: Setup Python kernel
-        run: |
-          eval "$(micromamba shell hook --shell bash)"
-          micromamba activate madison
-          python -m ipykernel install --user --name python3 --display-name "Python 3"
-
-      - name: Render site (in conda env)
+      - name: Setup Python kernel with environment variables
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          eval "$(micromamba shell hook --shell bash)"
-          micromamba activate madison
-          quarto render
+          micromamba run -n madison python -m ipykernel install --user --name python3 --display-name "Python 3"
+
+      - name: Render site with environment
+        run: |
+          export PATH="$PWD/bin/linux:$PATH"
+          micromamba run -n madison quarto render
+        env:
+          PATH: ${{ env.PATH }}
 
       - name: Add .nojekyll
         run: |
