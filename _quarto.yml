@@ -1,11 +1,6 @@
 project:
   type: website
   output-dir: _site
-  execute:
-    enabled: true
-    freeze: false
-  resources:
-    - environment.yml
 
 website:
   title: "PESTPP Madison Tutorials"
@@ -34,3 +29,6 @@ format:
     code-fold: true
     code-tools: true
     theme: cosmo
+    execute:
+      enabled: true
+      freeze: false
