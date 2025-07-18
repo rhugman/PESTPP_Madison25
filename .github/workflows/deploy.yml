@@ -22,6 +22,10 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Jupyter kernel
+        run: |
+          micromamba run -n madison python -m ipykernel install --user --name madison --display-name "Python (madison)"
+
       - name: Render site (in conda env)
         run: |
           micromamba run -n madison quarto render
