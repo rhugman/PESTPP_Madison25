@@ -22,9 +22,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render site
+      - name: Render site (in conda env)
         run: |
-          quarto render
+          micromamba run -n madison quarto render
 
       - name: Add .nojekyll
         run: |
