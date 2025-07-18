@@ -22,13 +22,23 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install Jupyter kernel
+      - name: Make executables accessible
         run: |
-          micromamba run -n madison python -m ipykernel install --user --name madison --display-name "Python (madison)"
+          chmod +x bin/linux/*
+          export PATH="$PWD/bin/linux:$PATH"
+          echo "PATH=$PWD/bin/linux:$PATH" >> $GITHUB_ENV
+
+      - name: Setup Python kernel and environment
+        run: |
+          micromamba activate madison
+          python -m ipykernel install --user --name python3 --display-name "Python 3"
+          echo "JUPYTER_PATH=$(micromamba run -n madison python -c 'import jupyter; print(jupyter.path.jupyter_path()[0])')" >> $GITHUB_ENV
 
       - name: Render site (in conda env)
         run: |
-          micromamba run -n madison quarto render
+          micromamba activate madison
+          export PATH="$PWD/bin/linux:$PATH"
+          quarto render
 
       - name: Add .nojekyll
         run: |

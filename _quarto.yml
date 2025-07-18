@@ -37,4 +37,5 @@ format:
     code-tools: true
     theme: cosmo
     execute:
-      enabled: false
+      enabled: true
+      freeze: false
