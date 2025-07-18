@@ -21,6 +21,7 @@ dependencies:
   - git
   - nbconvert
   - ipykernel
+  - quarto
   - pip:
        - -e flopy
       # - -e pyemu

@@ -12,42 +12,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up mamba environment
+      - name: Set up mamba environment (includes Quarto)
         uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yml
           cache-downloads: true
           init-shell: bash
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Make executables accessible and setup environment
+      - name: Make executables accessible
         run: |
           chmod +x bin/linux/*
-          echo "PATH=$PWD/bin/linux:$PATH" >> $GITHUB_ENV
 
-      - name: Setup Python kernel with environment variables
+      - name: Render site in environment
         run: |
           export PATH="$PWD/bin/linux:$PATH"
-          # Install kernel for user
-          micromamba run -n madison python -m ipykernel install --user --name python3 --display-name "Python 3"
-          # Verify kernel installation
-          micromamba run -n madison jupyter kernelspec list
-          echo "Available kernels in user directory:"
-          ls -la $HOME/.local/share/jupyter/kernels/ || echo "No user kernels directory"
-
-      - name: Render site with environment
-        run: |
-          export PATH="$PWD/bin/linux:$PATH"
-          # Set Jupyter paths to include both user and environment kernel locations
-          export JUPYTER_PATH="$HOME/.local/share/jupyter:/home/runner/micromamba/envs/madison/share/jupyter"
-          export JUPYTER_CONFIG_PATH="$HOME/.local/share/jupyter"
-          # Render with debug
-          micromamba run -n madison quarto render --execute-debug
-        env:
-          PATH: ${{ env.PATH }}
-
+          micromamba run -n madison quarto render
+        
       - name: Add .nojekyll
         run: |
           touch _site/.nojekyll
