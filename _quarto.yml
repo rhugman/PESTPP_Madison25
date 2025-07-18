@@ -1,6 +1,13 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - environment.yml
+  # Only render specified notebooks
+  render:
+    - notebooks/simple_pstfrom.ipynb
+    - notebooks/simple_ies.ipynb
+    - notebooks/simple_LP_example.ipynb
 
 website:
   title: "PESTPP Madison Tutorials"
