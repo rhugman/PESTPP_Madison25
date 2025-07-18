@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Jupyter kernel
         run: |
-          micromamba run -n madison python -m ipykernel install --user --name madison --display-name "Python (madison)"
+          micromamba run -n madison python -m ipykernel install --name madison --display-name "Python (madison)"
 
       - name: Render site (in conda env)
         run: |
