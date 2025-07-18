@@ -1,0 +1,41 @@
+name: Deploy Quarto Site
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up micromamba
+        uses: mamba-org/provision-with-micromamba@v15
+        with:
+          environment-file: environment.yml
+          cache-downloads: true
+
+      - name: Install Quarto
+        run: |
+          curl -fsSL https://quarto.org/download/latest/linux-amd64.sh | bash
+          export PATH="$HOME/quarto/bin:$PATH"
+          quarto --version
+
+      - name: Render site
+        run: |
+          export PATH="$HOME/quarto/bin:$PATH"
+          quarto render
+
+      - name: Add .nojekyll
+        run: |
+          touch _site/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _site
+          publish_branch: gh-pages

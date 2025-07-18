@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: _site
+  execute:
+    enabled: true
+    freeze: false
+  resources:
+    - environment.yml
+
+website:
+  title: "PESTPP Madison Tutorials"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Tutorials"
+        menu:
+          - text: "Simple PSTFrom"
+            href: notebooks/simple_pstfrom.ipynb
+          - text: "Simple IES"
+            href: notebooks/simple_ies.ipynb
+          - text: "Simple LP Example"
+            href: notebooks/simple_LP_example.ipynb
+  sidebar:
+    style: "docked"
+    contents:
+      - notebooks/simple_pstfrom.ipynb
+      - notebooks/simple_ies.ipynb
+      - notebooks/simple_LP_example.ipynb
+
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
+    theme: cosmo
