@@ -25,19 +25,18 @@ jobs:
       - name: Make executables accessible
         run: |
           chmod +x bin/linux/*
-          export PATH="$PWD/bin/linux:$PATH"
-          echo "PATH=$PWD/bin/linux:$PATH" >> $GITHUB_ENV
 
-      - name: Setup Python kernel and environment
+      - name: Setup Python kernel
         run: |
+          eval "$(micromamba shell hook --shell bash)"
           micromamba activate madison
           python -m ipykernel install --user --name python3 --display-name "Python 3"
-          echo "JUPYTER_PATH=$(micromamba run -n madison python -c 'import jupyter; print(jupyter.path.jupyter_path()[0])')" >> $GITHUB_ENV
 
       - name: Render site (in conda env)
         run: |
-          micromamba activate madison
           export PATH="$PWD/bin/linux:$PATH"
+          eval "$(micromamba shell hook --shell bash)"
+          micromamba activate madison
           quarto render
 
       - name: Add .nojekyll
